@@ -135,7 +135,9 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 1179267970709266037, guid: 2c5146f1999dfe4429feb411832f908a, type: 2}
+  - {fileID: -6617474711093017461, guid: dbc3de649136db745ad3bc3c92500e5d, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -611,11 +613,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: 3DEditor
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 803fc34ec669d901
   metroApplicationDescription: 3D_Editor
   wsaImages: {}
   metroTileShortName: 3D_Editor
