@@ -7,7 +7,7 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
-/_builds/
+/*_builds/
 /_publish/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
