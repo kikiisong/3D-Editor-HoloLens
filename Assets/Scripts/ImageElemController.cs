@@ -6,26 +6,6 @@ using System.IO;
 #if UNITY_EDITOR 
     using UnityEditor;
 #endif
-/*public class OpenFilePanelExample : EditorWindow
-{
-    [MenuItem("Example/Overwrite Texture")]
-    static void Apply()
-    {
-        Texture2D texture = Selection.activeObject as Texture2D;
-        if (texture == null)
-        {
-            EditorUtility.DisplayDialog("Select Texture", "You must select a texture first!", "OK");
-            return;
-        }
-
-        string path = EditorUtility.OpenFilePanel("Overwrite with png", "", "png");
-        if (path.Length != 0)
-        {
-            var fileContent = File.ReadAllBytes(path);
-            //texture.LoadImage(fileContent);
-        }
-    }
-}*/
 
 public class ImageElemController : MonoBehaviour
 {
@@ -44,14 +24,23 @@ public class ImageElemController : MonoBehaviour
 
     public void createImg()
     {
-#if UNITY_EDITOR
-        string path = EditorUtility.OpenFilePanel("Overwrite with png", "", "png");
+//#if UNITY_EDITOR
+        string path = EditorUtility.OpenFilePanel("Overwrite with jpg", "", "jpg");
         if (path.Length != 0)
         {
             var fileContent = File.ReadAllBytes(path);
+            var tex = new Texture2D(2, 2);
+            tex.LoadImage(fileContent);
+
+            GameObject a = Instantiate(imgPrefab, new Vector3(-0.3661f, 0, 0.2f), Quaternion.identity);
+            MeshRenderer b = (MeshRenderer)(a.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
+            b.material.mainTexture=tex;
         }
-#elif WINDOWS_UWP
-        var picker = new Windows.Storage.Pickers.FileOpenPicker();
+       
+     
+    
+//#elif WINDOWS_UWP
+        /*var picker = new Windows.Storage.Pickers.FileOpenPicker();
         picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
         picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
         picker.FileTypeFilter.Add(".jpg");
@@ -67,8 +56,8 @@ public class ImageElemController : MonoBehaviour
         else
         {
             this.textBlock.Text = "Operation cancelled.";
-        }
-#endif
+        }*/
+//#endif
 
         //Instantiate(imgPrefab, new Vector3(-0.3661f, 0, 0.2f), Quaternion.identity);
     }
