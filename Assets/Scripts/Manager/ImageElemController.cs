@@ -11,6 +11,7 @@ using System.IO;
 public class ImageElemController : MonoBehaviour
 {
     public GameObject imgPrefab;
+    public GameObject logoPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,10 @@ public class ImageElemController : MonoBehaviour
         
     }
 
+    public void addJHULogo()
+    {
+        Instantiate(logoPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
+    }
     public void createImg()
     {
         GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
