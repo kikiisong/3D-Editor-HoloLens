@@ -28,6 +28,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPinMenu: {fileID: 3102809713360913888, guid: 513edd6e958baea429abc54e2c27c835, type: 3}
   threeDSubMenu: {fileID: 5848342983985402041, guid: 72f613498b7547445a69707366da5d31, type: 3}
+  mesh: {fileID: -2432090755550338912, guid: b098fe3f7e7c9aa48afd54ae3b867e45, type: 3}
 --- !u!1 &46285123800433711
 GameObject:
   m_ObjectHideFlags: 0

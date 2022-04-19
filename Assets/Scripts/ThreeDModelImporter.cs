@@ -95,11 +95,12 @@ public class ThreeDModelImporter : MonoBehaviour
 
     void AddHandInteractionToObj(GameObject gameObject, string path)
     {
-        var meshCollider = gameObject.AddComponent<MeshCollider>();
+        var model = gameObject.transform.GetChild(0);
+        var meshCollider = model.gameObject.AddComponent<MeshCollider>();
         meshCollider.convex = true;
-        gameObject.AddComponent<ObjectManipulator>();
-        gameObject.AddComponent<NearInteractionGrabbable>();
-        var subMenu = Instantiate<GameObject>(threeDSubMenu, gameObject.transform);
+        model.gameObject.AddComponent<ObjectManipulator>();
+        model.gameObject.AddComponent<NearInteractionGrabbable>();
+        var subMenu = Instantiate<GameObject>(threeDSubMenu, model.transform);
         var displayAnchorBtn = subMenu.transform.Find("ButtonCollection").transform.Find("DisplayAnchorBtn").gameObject;
         if (displayAnchorBtn != null)
         {
@@ -115,7 +116,7 @@ public class ThreeDModelImporter : MonoBehaviour
         destroyObjs[1].obj = gameObject;
         subMenu.AddComponent<DetachTransformParent>();
         subMenu.SetActive(false);
-        var btnPinMenu = Instantiate<GameObject>(buttonPinMenu, gameObject.transform);
+        var btnPinMenu = Instantiate<GameObject>(buttonPinMenu, model.transform);
         btnPinMenu.GetComponent<ButtonConfigHelper>().OnClick.AddListener(()=>
         {
             subMenu.SetActive(true);
