@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,10 +8,14 @@ public class VoiceTitleEdit : MonoBehaviour
 {
     public TextMeshPro textContent;
     public TextMeshPro textTitle;
+    public ButtonConfigHelper buttonTitle;
+    public ButtonConfigHelper buttonContent;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        buttonTitle.OnClick.AddListener(startEditingTitle);
+        buttonContent.OnClick.AddListener(startEditingContent);
     }
 
     // Update is called once per frame
