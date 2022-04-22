@@ -16,6 +16,26 @@ public class VoiceTitleEdit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
+    }
+
+    public void startEditingTitle()
+    {
+        textTitle.text += " start ";
+    }
+
+    public void stopEditingTitle()
+    {
+        textTitle.text += " stop ";
+    }
+
+    public void startEditingContent()
+    {
+        textContent.text += " start ";
+    }
+
+    public void stopEditingContent()
+    {
+        textContent.text += " stop ";
     }
 }
