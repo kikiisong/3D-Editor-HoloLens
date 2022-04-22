@@ -26,21 +26,29 @@ public class VoiceTitleEdit : MonoBehaviour
 
     public void startEditingTitle()
     {
+        buttonTitle.OnClick.RemoveListener(startEditingTitle);
+        buttonTitle.OnClick.AddListener(stopEditingTitle);
         textTitle.text += " start ";
     }
 
     public void stopEditingTitle()
     {
+        buttonTitle.OnClick.RemoveListener(stopEditingTitle);
+        buttonTitle.OnClick.AddListener(startEditingTitle);
         textTitle.text += " stop ";
     }
 
     public void startEditingContent()
     {
+        buttonContent.OnClick.RemoveListener(startEditingContent);
+        buttonContent.OnClick.AddListener(stopEditingContent);
         textContent.text += " start ";
     }
 
     public void stopEditingContent()
     {
+        buttonContent.OnClick.RemoveListener(stopEditingContent);
+        buttonContent.OnClick.AddListener(startEditingContent);
         textContent.text += " stop ";
     }
 }
