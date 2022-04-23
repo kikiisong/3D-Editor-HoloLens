@@ -28,6 +28,7 @@ public class VoiceTitleEdit : MonoBehaviour
     {
         buttonTitle.OnClick.RemoveListener(startEditingTitle);
         buttonTitle.OnClick.AddListener(stopEditingTitle);
+        buttonTitle.MainLabelText = "Stop Editing Title";
         textTitle.text += " start ";
     }
 
@@ -35,6 +36,7 @@ public class VoiceTitleEdit : MonoBehaviour
     {
         buttonTitle.OnClick.RemoveListener(stopEditingTitle);
         buttonTitle.OnClick.AddListener(startEditingTitle);
+        buttonTitle.MainLabelText = "Edit Title";
         textTitle.text += " stop ";
     }
 
@@ -42,6 +44,7 @@ public class VoiceTitleEdit : MonoBehaviour
     {
         buttonContent.OnClick.RemoveListener(startEditingContent);
         buttonContent.OnClick.AddListener(stopEditingContent);
+        buttonContent.MainLabelText = "Stop Editing Content";
         textContent.text += " start ";
     }
 
@@ -49,6 +52,7 @@ public class VoiceTitleEdit : MonoBehaviour
     {
         buttonContent.OnClick.RemoveListener(stopEditingContent);
         buttonContent.OnClick.AddListener(startEditingContent);
+        buttonContent.MainLabelText = "Edit Content";
         textContent.text += " stop ";
     }
 }
