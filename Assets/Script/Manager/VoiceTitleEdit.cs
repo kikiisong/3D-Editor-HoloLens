@@ -12,11 +12,22 @@ public class VoiceTitleEdit : MonoBehaviour
     public ButtonConfigHelper buttonTitle;
     public ButtonConfigHelper buttonContent;
 
+    private DictationRecognizer dictationRecognizer_title;
+
     // Start is called before the first frame update
     void Start()
     {
         buttonTitle.OnClick.AddListener(startEditingTitle);
         buttonContent.OnClick.AddListener(startEditingContent);
+
+        dictationRecognizer_title = new DictationRecognizer();
+
+
+        dictationRecognizer_title.DictationHypothesis += (text) =>
+        {
+            textTitle.text += text;
+        };
+
     }
 
     // Update is called once per frame
@@ -31,7 +42,9 @@ public class VoiceTitleEdit : MonoBehaviour
         buttonTitle.OnClick.RemoveListener(startEditingTitle);
         buttonTitle.OnClick.AddListener(stopEditingTitle);
         buttonTitle.MainLabelText = "Stop Editing Title";
+
         PhraseRecognitionSystem.Shutdown();
+        dictationRecognizer_title.Start();
 
     }
 
@@ -41,6 +54,8 @@ public class VoiceTitleEdit : MonoBehaviour
         buttonTitle.OnClick.RemoveListener(stopEditingTitle);
         buttonTitle.OnClick.AddListener(startEditingTitle);
         buttonTitle.MainLabelText = "Edit Title";
+
+        dictationRecognizer_title.Stop();
         PhraseRecognitionSystem.Restart();
     }
 
