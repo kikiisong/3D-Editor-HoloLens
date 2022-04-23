@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
 
 public class VoiceTitleEdit : MonoBehaviour
 {
@@ -26,18 +27,21 @@ public class VoiceTitleEdit : MonoBehaviour
 
     public void startEditingTitle()
     {
+        textTitle.text += " start ";
         buttonTitle.OnClick.RemoveListener(startEditingTitle);
         buttonTitle.OnClick.AddListener(stopEditingTitle);
         buttonTitle.MainLabelText = "Stop Editing Title";
-        textTitle.text += " start ";
+        PhraseRecognitionSystem.Shutdown();
+
     }
 
     public void stopEditingTitle()
     {
+        textTitle.text += " stop ";
         buttonTitle.OnClick.RemoveListener(stopEditingTitle);
         buttonTitle.OnClick.AddListener(startEditingTitle);
         buttonTitle.MainLabelText = "Edit Title";
-        textTitle.text += " stop ";
+        PhraseRecognitionSystem.Restart();
     }
 
     public void startEditingContent()
