@@ -12,6 +12,8 @@ public class VoiceTitleEdit : MonoBehaviour
     public ButtonConfigHelper buttonTitle;
     public ButtonConfigHelper buttonContent;
 
+    private string currentTitle;
+    private string currentContent;
     private DictationRecognizer dictationRecognizer_title;
     private DictationRecognizer dictationRecognizer_content;
 
@@ -20,6 +22,7 @@ public class VoiceTitleEdit : MonoBehaviour
     {
         buttonTitle.OnClick.AddListener(startEditingTitle);
         buttonContent.OnClick.AddListener(startEditingContent);
+        currentTitle = "";
     }
 
     // Update is called once per frame
@@ -30,18 +33,17 @@ public class VoiceTitleEdit : MonoBehaviour
 
     private void DictationRecognizer_OnDictationResult_title(string text, ConfidenceLevel confidence)
     {
-        Debug.Log("Dictation result: " + text);
-        //textTitle.text += text;
+        textTitle.text = currentTitle + " " + text + ".";
+        currentTitle += text;
     }
 
     private void DictationRecognizer_OnDictationHypothesis_title(string text)
     {
-        Debug.Log("Dictation hypo: " + text);
+        textTitle.text = currentTitle + " " + text + "...";
     }
 
     public void startEditingTitle()
     {
-        textTitle.text += " start ";
         buttonTitle.OnClick.RemoveListener(startEditingTitle);
         buttonTitle.OnClick.AddListener(stopEditingTitle);
         buttonTitle.MainLabelText = "Stop Editing Title";
@@ -57,7 +59,6 @@ public class VoiceTitleEdit : MonoBehaviour
 
     public void stopEditingTitle()
     {
-        textTitle.text += " stop ";
         buttonTitle.OnClick.RemoveListener(stopEditingTitle);
         buttonTitle.OnClick.AddListener(startEditingTitle);
         buttonTitle.MainLabelText = "Edit Title";
