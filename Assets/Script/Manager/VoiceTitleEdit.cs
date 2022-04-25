@@ -23,6 +23,7 @@ public class VoiceTitleEdit : MonoBehaviour
         buttonTitle.OnClick.AddListener(startEditingTitle);
         buttonContent.OnClick.AddListener(startEditingContent);
         currentTitle = "";
+        currentContent = "";
     }
 
     // Update is called once per frame
@@ -40,6 +41,17 @@ public class VoiceTitleEdit : MonoBehaviour
     private void DictationRecognizer_OnDictationHypothesis_title(string text)
     {
         textTitle.text = currentTitle + " " + text + "...";
+    }
+
+    private void DictationRecognizer_OnDictationResult_content(string text, ConfidenceLevel confidence)
+    {
+        textContent.text = currentContent + " " + text + ".";
+        currentContent += text;
+    }
+
+    private void DictationRecognizer_OnDictationHypothesis_content(string text)
+    {
+        textContent.text = currentContent + " " + text + "...";
     }
 
     public void startEditingTitle()
@@ -75,7 +87,13 @@ public class VoiceTitleEdit : MonoBehaviour
         buttonContent.OnClick.RemoveListener(startEditingContent);
         buttonContent.OnClick.AddListener(stopEditingContent);
         buttonContent.MainLabelText = "Stop Editing Content";
-        textContent.text += " start ";
+
+        PhraseRecognitionSystem.Shutdown();
+        dictationRecognizer_content = new DictationRecognizer();
+        dictationRecognizer_content.DictationHypothesis += DictationRecognizer_OnDictationHypothesis_content;
+        dictationRecognizer_content.DictationResult += DictationRecognizer_OnDictationResult_content;
+
+        dictationRecognizer_content.Start();
     }
 
     public void stopEditingContent()
@@ -83,6 +101,11 @@ public class VoiceTitleEdit : MonoBehaviour
         buttonContent.OnClick.RemoveListener(stopEditingContent);
         buttonContent.OnClick.AddListener(startEditingContent);
         buttonContent.MainLabelText = "Edit Content";
-        textContent.text += " stop ";
+
+        dictationRecognizer_content.Stop();
+        dictationRecognizer_content.DictationHypothesis -= DictationRecognizer_OnDictationHypothesis_content;
+        dictationRecognizer_content.DictationResult -= DictationRecognizer_OnDictationResult_content;
+        dictationRecognizer_content.Dispose();
+        PhraseRecognitionSystem.Restart();
     }
 }
