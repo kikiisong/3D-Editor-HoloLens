@@ -13,27 +13,30 @@ public class VoiceTitleEdit : MonoBehaviour
     public ButtonConfigHelper buttonContent;
 
     private DictationRecognizer dictationRecognizer_title;
+    private DictationRecognizer dictationRecognizer_content;
 
     // Start is called before the first frame update
     void Start()
     {
         buttonTitle.OnClick.AddListener(startEditingTitle);
         buttonContent.OnClick.AddListener(startEditingContent);
-
-        dictationRecognizer_title = new DictationRecognizer();
-
-
-        dictationRecognizer_title.DictationHypothesis += (text) =>
-        {
-            textTitle.text += text;
-        };
-
     }
 
     // Update is called once per frame
     void Update()
     {
        
+    }
+
+    private void DictationRecognizer_OnDictationResult_title(string text, ConfidenceLevel confidence)
+    {
+        Debug.Log("Dictation result: " + text);
+        //textTitle.text += text;
+    }
+
+    private void DictationRecognizer_OnDictationHypothesis_title(string text)
+    {
+        Debug.Log("Dictation hypo: " + text);
     }
 
     public void startEditingTitle()
@@ -44,6 +47,10 @@ public class VoiceTitleEdit : MonoBehaviour
         buttonTitle.MainLabelText = "Stop Editing Title";
 
         PhraseRecognitionSystem.Shutdown();
+        dictationRecognizer_title = new DictationRecognizer();
+        dictationRecognizer_title.DictationHypothesis += DictationRecognizer_OnDictationHypothesis_title;
+        dictationRecognizer_title.DictationResult += DictationRecognizer_OnDictationResult_title;
+        
         dictationRecognizer_title.Start();
 
     }
@@ -56,6 +63,9 @@ public class VoiceTitleEdit : MonoBehaviour
         buttonTitle.MainLabelText = "Edit Title";
 
         dictationRecognizer_title.Stop();
+        dictationRecognizer_title.DictationHypothesis -= DictationRecognizer_OnDictationHypothesis_title;
+        dictationRecognizer_title.DictationResult -= DictationRecognizer_OnDictationResult_title;
+        dictationRecognizer_title.Dispose();
         PhraseRecognitionSystem.Restart();
     }
 
