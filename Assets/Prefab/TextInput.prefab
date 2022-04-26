@@ -569,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8451469530216736246, guid: 478732197b53dee4694480aac1a7c98c, type: 3}
       propertyPath: m_TagString
-      value: TextPanel
+      value: UIElement
       objectReference: {fileID: 0}
     - target: {fileID: 8455745137905137370, guid: 478732197b53dee4694480aac1a7c98c, type: 3}
       propertyPath: m_IsActive

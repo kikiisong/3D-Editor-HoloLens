@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SaveToJSON : MonoBehaviour
 {
+    public enum UIType { Text, Image };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,22 +22,41 @@ public class SaveToJSON : MonoBehaviour
     public void saveToFile()
     {
         //for each text panel
-        VoiceTitleEdit[] textPanelsInScene = GameObject.FindObjectsOfType<VoiceTitleEdit>();
+        GameObject[] allUIElemInScene = GameObject.FindGameObjectsWithTag("UIElement");
+        foreach(GameObject currUIElem in allUIElemInScene)
+        {
+            if (currUIElem.GetComponent("VoiceTitleEdit") != null)
+            {
+                Debug.Log("text");
+            }
+        }
+        /*VoiceTitleEdit[] textPanelsInScene = GameObject.FindObjectsOfType<VoiceTitleEdit>();
         foreach (VoiceTitleEdit currTextPanel in textPanelsInScene)
         {
             TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currTextPanel.gameObject.transform);
             string textPanelData = JsonUtility.ToJson(textPanelToSave);
             Debug.Log(textPanelData);
             System.IO.File.WriteAllText("Assets/Resources/data.json", textPanelData);
-        }
+        }*/
         
     }
 }
 
+[System.Serializable]
+public class UILayout
+{
+    public UIElem[] allUIElements;
 
+}
 
 [System.Serializable]
-public class TextPanel
+public class UIElem
+{
+
+}
+
+[System.Serializable]
+public class TextPanel:UIElem
 {
     public string m_Title;
     public string m_Content;
