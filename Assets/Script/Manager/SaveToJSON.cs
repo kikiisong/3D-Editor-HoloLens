@@ -26,7 +26,7 @@ public class SaveToJSON : MonoBehaviour
             TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currTextPanel.gameObject.transform);
             string textPanelData = JsonUtility.ToJson(textPanelToSave);
             Debug.Log(textPanelData);
-            //System.IO.File.WriteAllText(Application.persistentDataPath + "/PotionData.json", potion);
+            System.IO.File.WriteAllText("Assets/Resources/data.json", textPanelData);
         }
         
     }
