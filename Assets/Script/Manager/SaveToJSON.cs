@@ -21,17 +21,32 @@ public class SaveToJSON : MonoBehaviour
     {
         //for each text panel
         VoiceTitleEdit[] textPanelsInScene = GameObject.FindObjectsOfType<VoiceTitleEdit>();
-        Debug.Log(textPanelsInScene.Length);
+        foreach (VoiceTitleEdit currTextPanel in textPanelsInScene)
+        {
+            TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currTextPanel.gameObject.transform);
+            string textPanelData = JsonUtility.ToJson(textPanelToSave);
+            Debug.Log(textPanelData);
+            //System.IO.File.WriteAllText(Application.persistentDataPath + "/PotionData.json", potion);
+        }
         
     }
 }
 
+
+
 [System.Serializable]
 public class TextPanel
 {
-    public string title;
-    public string content;
-    public SerializedTransform addonSerializedTransform;
+    public string m_Title;
+    public string m_Content;
+    public SerializedTransform m_addonSerializedTransform;
+
+    public TextPanel(string a_Title, string a_Content, Transform a_transform)
+    {
+        m_Title = a_Title;
+        m_Content = a_Content;
+        m_addonSerializedTransform = new SerializedTransform(a_transform);
+    }
 }
 
 // Found on Unity Forum (TO REF)
