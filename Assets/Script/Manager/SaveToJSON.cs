@@ -20,43 +20,37 @@ public class SaveToJSON : MonoBehaviour
     }
 
     public void saveToFile()
-    {
-        //for each text panel
+    {      
         GameObject[] allUIElemInScene = GameObject.FindGameObjectsWithTag("UIElement");
-        foreach(GameObject currUIElem in allUIElemInScene)
+        UILayout currentUILayout = new UILayout();
+        foreach (GameObject currUIElem in allUIElemInScene)
         {
             if (currUIElem.GetComponent("VoiceTitleEdit") != null)
             {
-                Debug.Log("text");
+                VoiceTitleEdit currTextPanel = (VoiceTitleEdit)(currUIElem.GetComponent("VoiceTitleEdit"));
+                TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currUIElem.transform);
+                string textPanelData = JsonUtility.ToJson(textPanelToSave);
+                Debug.Log(textPanelData);
+                currentUILayout.allTextPanels.Add(textPanelToSave);
+                //System.IO.File.WriteAllText("Assets/Resources/data.json", textPanelData);
             }
         }
-        /*VoiceTitleEdit[] textPanelsInScene = GameObject.FindObjectsOfType<VoiceTitleEdit>();
-        foreach (VoiceTitleEdit currTextPanel in textPanelsInScene)
-        {
-            TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currTextPanel.gameObject.transform);
-            string textPanelData = JsonUtility.ToJson(textPanelToSave);
-            Debug.Log(textPanelData);
-            System.IO.File.WriteAllText("Assets/Resources/data.json", textPanelData);
-        }*/
-        
+
+        Debug.Log(JsonUtility.ToJson(currentUILayout));
+
     }
 }
 
 [System.Serializable]
 public class UILayout
 {
-    public UIElem[] allUIElements;
+    public List<TextPanel> allTextPanels = new List<TextPanel>();
 
 }
 
-[System.Serializable]
-public class UIElem
-{
-
-}
 
 [System.Serializable]
-public class TextPanel:UIElem
+public class TextPanel
 {
     public string m_Title;
     public string m_Content;
