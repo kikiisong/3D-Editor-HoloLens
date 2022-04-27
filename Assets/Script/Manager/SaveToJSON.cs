@@ -36,7 +36,9 @@ public class SaveToJSON : MonoBehaviour
             }
         }
 
-        Debug.Log(JsonUtility.ToJson(currentUILayout));
+        string UILayoutData = JsonUtility.ToJson(currentUILayout);
+        System.IO.File.WriteAllText("Assets/Resources/data.json", UILayoutData);
+        Debug.Log(UILayoutData);
 
     }
 }
