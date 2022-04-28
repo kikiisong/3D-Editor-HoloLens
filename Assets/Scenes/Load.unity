@@ -631,3 +631,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05e7fd01509cbd4fbfabb2b9217620b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textPanelPrefab: {fileID: 7661447391403502268, guid: c2517ba17cb4dc54c906ebfd091a6d1c, type: 3}
