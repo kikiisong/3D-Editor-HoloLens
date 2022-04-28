@@ -8,6 +8,7 @@ public class CreateObj : MonoBehaviour
     // Start is called before the first frame update
     public Interactable btn;
     public GameObject obj;
+
     void Start()
     {
         btn.OnClick.AddListener(Create);
