@@ -17,11 +17,14 @@ public class ObjectAnchor : MonoBehaviour
         objectAnchorManager.AddToAllObjects(gameObject);
         GameObject menu = objectAnchorManager.GetSubMenu(gameObject);
         GameObject toggleAnchorBtn = objectAnchorManager.GetBtn(menu, objectAnchorManager.TOGGLE_OBJ_ANCHOR_NAME);
-        toggleAnchorBtn.GetComponent<Interactable>().OnClick.AddListener(ToggleAnchorBtnListener);
+        if(toggleAnchorBtn!=null)
+            toggleAnchorBtn.GetComponent<Interactable>().OnClick.AddListener(ToggleAnchorBtnListener);
         GameObject anchorToObjectBtn = objectAnchorManager.GetBtn(menu, objectAnchorManager.ANCHOR_TO_OBJ_NAME);
-        anchorToObjectBtn.GetComponent<Interactable>().OnClick.AddListener(AnchorToObjectBtnListener);
+        if(anchorToObjectBtn!=null)
+            anchorToObjectBtn.GetComponent<Interactable>().OnClick.AddListener(AnchorToObjectBtnListener);
         GameObject unGroupBtn = objectAnchorManager.GetBtn(menu, objectAnchorManager.UN_GROUP_BTN_NAME);
-        unGroupBtn.GetComponent<Interactable>().OnClick.AddListener(UnGroupBtnListener);
+        if(unGroupBtn!=null)
+            unGroupBtn.GetComponent<Interactable>().OnClick.AddListener(UnGroupBtnListener);
         objectAnchorManager.PostSetAnchorUpdateOtherObjects(objectAnchorManager.curAnchor);
     }
 

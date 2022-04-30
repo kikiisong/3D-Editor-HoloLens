@@ -45,7 +45,8 @@ public class ObjAnchorManager : MonoBehaviour
 
     void ChangeBtnText(GameObject btn, string text)
     {
-        btn.GetComponent<ButtonConfigHelper>().MainLabelText = text;
+        if(btn!=null)
+            btn.GetComponent<ButtonConfigHelper>().MainLabelText = text;
     }
 
     public GameObject GetBtn(GameObject objMenu, string name)
@@ -59,7 +60,8 @@ public class ObjAnchorManager : MonoBehaviour
     {
         GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
         GameObject btn = collection.transform.Find(name).gameObject;
-        btn.SetActive(true);
+        if(btn!=null)
+            btn.SetActive(true);
         collection.GetComponent<GridObjectCollection>().UpdateCollection();
     }
     void DeactivateButton(GameObject objMenu, string name)
@@ -68,7 +70,8 @@ public class ObjAnchorManager : MonoBehaviour
         {
             GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
             GameObject btn = collection.transform.Find(name).gameObject;
-            btn.SetActive(false);
+            if(btn!=null)
+                btn.SetActive(false);
             collection.GetComponent<GridObjectCollection>().UpdateCollection();
         }
     }
