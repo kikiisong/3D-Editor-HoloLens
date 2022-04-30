@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - UIElement
+  - Sphere
   layers:
   - Default
   - TransparentFX

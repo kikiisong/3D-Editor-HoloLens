@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8153320984276572860}
   - component: {fileID: 4066435451771457171}
   - component: {fileID: 6832348458078756645}
+  - component: {fileID: 6405734628338425519}
+  - component: {fileID: 8524669798070066931}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -171,18 +173,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTetherWhenManipulating: 0
   IsBoundsHandles: 0
---- !u!114 &2263694011402450496
+--- !u!114 &6405734628338425519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7670035509266723585}
+  m_GameObject: {fileID: 7417047673990495342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3392b4b1204d274e8363a498d2d2d07, type: 3}
+  m_Script: {fileID: 11500000, guid: 89490701847dccd46a0afd20fbb0a27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8524669798070066931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417047673990495342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4c3f7db5c6d2d4db3210fe065d2eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 7670035509266723585}
 --- !u!1001 &4276181440789521336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,6 +208,18 @@ PrefabInstance:
     - target: {fileID: 1375287607196554147, guid: 72f613498b7547445a69707366da5d31, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010989492922321205, guid: 72f613498b7547445a69707366da5d31, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010989492922321227, guid: 72f613498b7547445a69707366da5d31, type: 3}
+      propertyPath: m_text
+      value: Set as anchor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010989493408569531, guid: 72f613498b7547445a69707366da5d31, type: 3}
+      propertyPath: m_Name
+      value: ToggleObjectAnchorBtn
       objectReference: {fileID: 0}
     - target: {fileID: 2578121838231971681, guid: 72f613498b7547445a69707366da5d31, type: 3}
       propertyPath: obj
@@ -282,6 +309,22 @@ PrefabInstance:
       propertyPath: to
       value: 
       objectReference: {fileID: 7417047673990495342}
+    - target: {fileID: 7145943524949780749, guid: 72f613498b7547445a69707366da5d31, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145943524949780749, guid: 72f613498b7547445a69707366da5d31, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145943524949780749, guid: 72f613498b7547445a69707366da5d31, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145943524949780749, guid: 72f613498b7547445a69707366da5d31, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8c3faec7fe20fa049a963e86c6a92a3f, type: 2}
     - target: {fileID: 8382615385290484878, guid: 72f613498b7547445a69707366da5d31, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
