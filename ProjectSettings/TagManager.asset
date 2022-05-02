@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - TextPanel
   - UIElement
+  - TextPanelTest
   layers:
   - Default
   - TransparentFX

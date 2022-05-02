@@ -11,9 +11,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/EditorScene.unity
     guid: 5a4ba4fc4be154a46a3b32131b3ab97b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Text_and_2D.unity
     guid: e3cc645e1c3c2ea4fb0b4f04e068b292
+  - enabled: 1
+    path: Assets/Scenes/SaveTest.unity
+    guid: da3de2b9f625e93438e7c7c99454dc3a
+  - enabled: 1
+    path: Assets/Scenes/Load.unity
+    guid: 1afcc42f0f6a88f4e89ed034e4c50513
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: dbc3de649136db745ad3bc3c92500e5d, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 2c5146f1999dfe4429feb411832f908a, type: 2}
