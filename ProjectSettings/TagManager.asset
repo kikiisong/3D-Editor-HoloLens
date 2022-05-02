@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TextPanel
   - UIElement
+  - TextPanelTest
   layers:
   - Default
   - TransparentFX

@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17064637640a03e4686a3e09abbb01e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPrefab: {fileID: 7708161095191750944, guid: 9e495ef6def6381409391a3320d68550, type: 3}
+  textPrefab: {fileID: 7142184258589464694, guid: fcf51aeb0c14cc74eb5e95da789dd88a, type: 3}
 --- !u!1 &960558466
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +921,7 @@ PrefabInstance:
       objectReference: {fileID: 1389972935}
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: saveToFile
+      value: saveToFileTest
       objectReference: {fileID: 0}
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

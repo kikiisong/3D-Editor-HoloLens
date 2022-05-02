@@ -1,11 +1,13 @@
 using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class LoadFromJson : MonoBehaviour
 {
     public GameObject textPanelPrefab;
+    public GameObject debugPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,23 @@ public class LoadFromJson : MonoBehaviour
 
     public void loadFromFile()
     {
+        DialogShell texts = (DialogShell)(debugPanel.GetComponent("DialogShell"));
+#if UNITY_EDITOR
         string filePath = "Assets/Resources/data.json";
+#endif
+
+#if (!UNITY_EDITOR && ENABLE_WINMD_SUPPORT && UNITY_WSA)
+        string filePath = Path.Combine(Application.persistentDataPath, "data.json");
+        texts.DescriptionText.text += " " + filePath;
+#endif
         string UILayoutData = System.IO.File.ReadAllText(filePath);
+        texts.DescriptionText.text += " " + "UI Layout: " + UILayoutData;
+        /*using (StreamReader reader = File.OpenText(filePath))
+        {
+            result = new char[reader.BaseStream.Length];
+            await reader.ReadAsync(result, 0, (int)reader.BaseStream.Length);
+        }*/
+
         UILayout currentUILayout = JsonUtility.FromJson<UILayout>(UILayoutData);
         //Debug.Log(currentUILayout.allTextPanels.ToString());
         foreach (TextPanel currTextPanel in currentUILayout.allTextPanels)

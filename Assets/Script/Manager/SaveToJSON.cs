@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Microsoft.MixedReality.Toolkit.UI;
 
 public class SaveToJSON : MonoBehaviour
 {
@@ -37,10 +40,58 @@ public class SaveToJSON : MonoBehaviour
         }
 
         string UILayoutData = JsonUtility.ToJson(currentUILayout);
-        System.IO.File.WriteAllText("Assets/Resources/data.json", UILayoutData);
+#if UNITY_EDITOR
+        File.WriteAllText("Assets/Resources/data.json", UILayoutData);
+#endif
+#if (!UNITY_EDITOR && ENABLE_WINMD_SUPPORT && UNITY_WSA)
+        string path = Path.Combine(Application.persistentDataPath, "data.json");
+        using (TextWriter writer = File.CreateText(path))
+        {
+            // TODO write text here
+            writer.Write(UILayoutData);
+        }
+#endif
         Debug.Log(UILayoutData);
 
     }
+
+    public void saveToFileTest()
+    {
+        GameObject[] allUIElemInScene = GameObject.FindGameObjectsWithTag("TextPanelTest");
+        UILayout currentUILayout = new UILayout();
+        foreach (GameObject currUIElem in allUIElemInScene)
+        {
+    
+                DialogShell currTextPanel = (DialogShell)(currUIElem.GetComponent("DialogShell")); 
+                TextPanel textPanelToSave = new TextPanel(currTextPanel.TitleText.text, currTextPanel.DescriptionText.text, currUIElem.transform);
+                string textPanelData = JsonUtility.ToJson(textPanelToSave);
+                Debug.Log(textPanelData);
+                currentUILayout.allTextPanels.Add(textPanelToSave);
+                //System.IO.File.WriteAllText("Assets/Resources/data.json", textPanelData);
+            
+        }
+
+        string UILayoutData = JsonUtility.ToJson(currentUILayout);
+#if UNITY_EDITOR
+        File.WriteAllText("Assets/Resources/data.json", UILayoutData);
+#endif
+#if (!UNITY_EDITOR && ENABLE_WINMD_SUPPORT && UNITY_WSA)
+        string path = Path.Combine(Application.persistentDataPath, "data.json");
+        using (TextWriter writer = File.CreateText(path))
+        {
+            // TODO write text here
+            writer.Write(UILayoutData);
+        }
+#endif
+        Debug.Log(UILayoutData);
+
+    }
+
+    public void goToLoad()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
 
 [System.Serializable]
