@@ -62,6 +62,7 @@ public class ObjectAnchor : MonoBehaviour
 
     private void OnDestroy()
     {
+        objectAnchorManager.Detach(gameObject);
         objectAnchorManager.RemoveFromAllObjects(gameObject);
     }
 

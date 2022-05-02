@@ -52,16 +52,22 @@ public class ObjAnchorManager : MonoBehaviour
     public GameObject GetBtn(GameObject objMenu, string name)
     {
         GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
-        GameObject btn = collection.transform.Find(name).gameObject;
-        return btn;
+        Transform btn_transform = collection.transform.Find(name);
+        if (btn_transform != null)
+            return btn_transform.gameObject;
+        else
+            return null;
     }
 
     void ActivateButton(GameObject objMenu, string name)
     {
         GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
-        GameObject btn = collection.transform.Find(name).gameObject;
-        if(btn!=null)
+        Transform btn_transform = collection.transform.Find(name);
+        if(btn_transform!=null)
+        {
+            GameObject btn = btn_transform.gameObject;
             btn.SetActive(true);
+        }
         collection.GetComponent<GridObjectCollection>().UpdateCollection();
     }
     void DeactivateButton(GameObject objMenu, string name)
@@ -69,9 +75,12 @@ public class ObjAnchorManager : MonoBehaviour
         if (objMenu != null)
         {
             GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
-            GameObject btn = collection.transform.Find(name).gameObject;
-            if(btn!=null)
+            Transform btn_transform = collection.transform.Find(name);
+            if(btn_transform!=null)
+            {
+                GameObject btn = btn_transform.gameObject;
                 btn.SetActive(false);
+            }
             collection.GetComponent<GridObjectCollection>().UpdateCollection();
         }
     }
@@ -137,7 +146,12 @@ public class ObjAnchorManager : MonoBehaviour
             {
                 GameObject otherObjMenu = GetSubMenu(otherObj);
                 ActivateButton(otherObjMenu, TOGGLE_OBJ_ANCHOR_NAME);
-                //RemoveObjectAnchorBtn(otherObjMenu);
+                GameObject anchor_to_obj_btn = GetBtn(otherObjMenu, ANCHOR_TO_OBJ_NAME);
+                if (anchor_to_obj_btn!=null)
+                {
+                    if(anchor_to_obj_btn.GetComponent<ButtonConfigHelper>().MainLabelText!=DETACH_TO_OBJ_TEXT)
+                        RemoveObjectAnchorBtn(otherObjMenu);
+                }
             }
         }
     }
@@ -186,6 +200,10 @@ public class ObjAnchorManager : MonoBehaviour
         {
             foreach (GameObject child in anchorChildrenPairs[parent])
             {
+                if (child == null)
+                {
+                    continue;
+                }
                 child.transform.parent = null;
                 GameObject childMenu = GetSubMenu(child);
                 ChangeBtnText(GetBtn(childMenu, ANCHOR_TO_OBJ_NAME), ANCHOR_TO_OBJ_TEXT);
