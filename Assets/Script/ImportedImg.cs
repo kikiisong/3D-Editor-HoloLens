@@ -92,4 +92,9 @@ public class ImportedImg : MonoBehaviour
 
 #endif
     }
+
+    public void deleteImg()
+    {
+        Destroy(this.gameObject);
+    }
 }
