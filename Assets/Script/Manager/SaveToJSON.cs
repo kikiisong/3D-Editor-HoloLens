@@ -40,10 +40,9 @@ public class SaveToJSON : MonoBehaviour
         GameObject[] allImgPanel = GameObject.FindGameObjectsWithTag("ImagePanel");
         foreach (GameObject currImgElem in allImgPanel)
         {
-            MeshRenderer imgRenderer = (MeshRenderer)(currImgElem.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
-            Texture texToSave = imgRenderer.material.mainTexture;
             TextMeshPro imgTitle = (TextMeshPro)(currImgElem.transform.GetChild(0).GetChild(0).GetComponent("TextMeshPro"));
-            ImgPanel imgPanelToSave = new ImgPanel(imgTitle.text, texToSave, currImgElem.transform);
+            ImportedImg imagePath = (ImportedImg)(currImgElem.GetComponent("ImportedImg"));
+            ImgPanel imgPanelToSave = new ImgPanel(imgTitle.text, imagePath.m_imagePath, currImgElem.transform);
 
             string imgPanelData = JsonUtility.ToJson(imgPanelToSave);
             Debug.Log(imgPanelData);
@@ -117,13 +116,13 @@ public class UILayout
 public class ImgPanel
 {
     public string m_Title;
-    public Texture m_img;
+    public string m_imgPath;
     public SerializedTransform m_addonSerializedTransform;
 
-    public ImgPanel(string a_Title, Texture a_img, Transform a_transform)
+    public ImgPanel(string a_Title, String a_imgPath, Transform a_transform)
     {
         m_Title = a_Title;
-        m_img = a_img;
+        m_imgPath = a_imgPath;
         m_addonSerializedTransform = new SerializedTransform(a_transform);
     }
 }

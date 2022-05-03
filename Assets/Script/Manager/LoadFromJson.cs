@@ -58,10 +58,15 @@ public class LoadFromJson : MonoBehaviour
             m_imgPanel.m_addonSerializedTransform._rotation[0]));
         currPanel.transform.localScale = new Vector3(m_imgPanel.m_addonSerializedTransform._scale[0], m_imgPanel.m_addonSerializedTransform._scale[1], m_imgPanel.m_addonSerializedTransform._scale[2]);
 
-        MeshRenderer imgRenderer = (MeshRenderer)(currPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
-        imgRenderer.material.mainTexture = m_imgPanel.m_img;
         TextMeshPro imgTitle = (TextMeshPro)(currPanel.transform.GetChild(0).GetChild(0).GetComponent("TextMeshPro"));
         imgTitle.text = m_imgPanel.m_Title;
+
+        var fileContent = File.ReadAllBytes(m_imgPanel.m_imgPath);
+        var tex = new Texture2D(2, 2);
+        tex.LoadImage(fileContent);
+
+        MeshRenderer imgRenderer = (MeshRenderer)(currPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
+        imgRenderer.material.mainTexture = tex;
     }
 
     public void InstantiateTextPanel(TextPanel m_textPanel)
