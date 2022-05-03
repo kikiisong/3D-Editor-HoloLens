@@ -44,6 +44,9 @@ public class ImageElemController : MonoBehaviour
             GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
             MeshRenderer imgRenderer = (MeshRenderer)(imgPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
             imgRenderer.material.mainTexture=tex;
+
+            ImportedImg imagePath = (ImportedImg)(imgPanel.GetComponent("ImportedImg"));
+            imagePath.m_imagePath = path;
         }
 #endif
 
@@ -73,7 +76,10 @@ public class ImageElemController : MonoBehaviour
                 GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
                 MeshRenderer imgRenderer = (MeshRenderer)(imgPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
                 imgRenderer.material.mainTexture=tex;
-        
+
+                ImportedImg imagePath = (ImportedImg)(imgPanel.GetComponent("ImportedImg"));
+                imagePath.m_imagePath = file.Path;
+
                 Debug.Log("***********************************");
                 string name = (file != null) ? file.Name : "No data";
                 Debug.Log("Name: " + name);
