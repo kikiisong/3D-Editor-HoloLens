@@ -2,11 +2,13 @@ using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 
 public class LoadFromJson : MonoBehaviour
 {
     public GameObject textPanelPrefab;
+    public GameObject imgPanelPrefab;
     public GameObject debugPanel;
     // Start is called before the first frame update
     void Start()
@@ -33,11 +35,6 @@ public class LoadFromJson : MonoBehaviour
 #endif
         string UILayoutData = System.IO.File.ReadAllText(filePath);
         texts.DescriptionText.text += " " + "UI Layout: " + UILayoutData;
-        /*using (StreamReader reader = File.OpenText(filePath))
-        {
-            result = new char[reader.BaseStream.Length];
-            await reader.ReadAsync(result, 0, (int)reader.BaseStream.Length);
-        }*/
 
         UILayout currentUILayout = JsonUtility.FromJson<UILayout>(UILayoutData);
         //Debug.Log(currentUILayout.allTextPanels.ToString());
@@ -46,6 +43,30 @@ public class LoadFromJson : MonoBehaviour
             //Debug.Log(JsonUtility.ToJson(currTextPanel));
             InstantiateTextPanel(currTextPanel);
         }
+
+        foreach (ImgPanel currImgPanel in currentUILayout.allImgPanels)
+        {
+            //Debug.Log(JsonUtility.ToJson(currImgPanel));
+            InstantiateImgPanel(currImgPanel);
+        }
+    }
+
+    public void InstantiateImgPanel(ImgPanel m_imgPanel)
+    {
+        GameObject currPanel = Instantiate(imgPanelPrefab, new Vector3(m_imgPanel.m_addonSerializedTransform._position[0], m_imgPanel.m_addonSerializedTransform._position[1], m_imgPanel.m_addonSerializedTransform._position[2]),
+            new Quaternion(m_imgPanel.m_addonSerializedTransform._rotation[1], m_imgPanel.m_addonSerializedTransform._rotation[2], m_imgPanel.m_addonSerializedTransform._rotation[3],
+            m_imgPanel.m_addonSerializedTransform._rotation[0]));
+        currPanel.transform.localScale = new Vector3(m_imgPanel.m_addonSerializedTransform._scale[0], m_imgPanel.m_addonSerializedTransform._scale[1], m_imgPanel.m_addonSerializedTransform._scale[2]);
+
+        TextMeshPro imgTitle = (TextMeshPro)(currPanel.transform.GetChild(0).GetChild(0).GetComponent("TextMeshPro"));
+        imgTitle.text = m_imgPanel.m_Title;
+
+        var fileContent = File.ReadAllBytes(m_imgPanel.m_imgPath);
+        var tex = new Texture2D(2, 2);
+        tex.LoadImage(fileContent);
+
+        MeshRenderer imgRenderer = (MeshRenderer)(currPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
+        imgRenderer.material.mainTexture = tex;
     }
 
     public void InstantiateTextPanel(TextPanel m_textPanel)

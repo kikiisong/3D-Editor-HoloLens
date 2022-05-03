@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Microsoft.MixedReality.Toolkit.UI;
+using TMPro;
 
 public class SaveToJSON : MonoBehaviour
 {
@@ -23,18 +24,29 @@ public class SaveToJSON : MonoBehaviour
     }
 
     public void saveToFile()
-    {      
-        GameObject[] allTextPanel = GameObject.FindGameObjectsWithTag("TextPanel");
+    {
         UILayout currentUILayout = new UILayout();
+
+        GameObject[] allTextPanel = GameObject.FindGameObjectsWithTag("TextPanel");
         foreach (GameObject currTextElem in allTextPanel)
         {
-            
                 VoiceTitleEdit currTextPanel = (VoiceTitleEdit)(currTextElem.GetComponent("VoiceTitleEdit"));
                 TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currTextElem.transform);
                 string textPanelData = JsonUtility.ToJson(textPanelToSave);
                 Debug.Log(textPanelData);
                 currentUILayout.allTextPanels.Add(textPanelToSave);
-                //System.IO.File.WriteAllText("Assets/Resources/data.json", textPanelData);
+        }
+
+        GameObject[] allImgPanel = GameObject.FindGameObjectsWithTag("ImagePanel");
+        foreach (GameObject currImgElem in allImgPanel)
+        {
+            TextMeshPro imgTitle = (TextMeshPro)(currImgElem.transform.GetChild(0).GetChild(0).GetComponent("TextMeshPro"));
+            ImportedImg imagePath = (ImportedImg)(currImgElem.GetComponent("ImportedImg"));
+            ImgPanel imgPanelToSave = new ImgPanel(imgTitle.text, imagePath.m_imagePath, currImgElem.transform);
+
+            string imgPanelData = JsonUtility.ToJson(imgPanelToSave);
+            Debug.Log(imgPanelData);
+            currentUILayout.allImgPanels.Add(imgPanelToSave);
         }
 
         string UILayoutData = JsonUtility.ToJson(currentUILayout);
@@ -96,9 +108,24 @@ public class SaveToJSON : MonoBehaviour
 public class UILayout
 {
     public List<TextPanel> allTextPanels = new List<TextPanel>();
+    public List<ImgPanel> allImgPanels = new List<ImgPanel>();
 
 }
 
+[System.Serializable]
+public class ImgPanel
+{
+    public string m_Title;
+    public string m_imgPath;
+    public SerializedTransform m_addonSerializedTransform;
+
+    public ImgPanel(string a_Title, String a_imgPath, Transform a_transform)
+    {
+        m_Title = a_Title;
+        m_imgPath = a_imgPath;
+        m_addonSerializedTransform = new SerializedTransform(a_transform);
+    }
+}
 
 [System.Serializable]
 public class TextPanel
