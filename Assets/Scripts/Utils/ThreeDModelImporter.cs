@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using AsImpL;
 using Microsoft.MixedReality.Toolkit.UI;
-#if UNITY_EDITOR 
-    using UnityEditor;
+using System;
+#if UNITY_EDITOR
+using UnityEditor;
 #endif
 using Microsoft.MixedReality.Toolkit.Input;
 #if ENABLE_WINMD_SUPPORT && UNITY_WSA
@@ -15,7 +16,7 @@ using System;
 public class ThreeDModelImporter : MonoBehaviour
 {
     // Start is called before the first frame update
-    protected string filePath;
+    public string filePath;
     protected string objectName = "ImportedObj";
     protected ImportOptions importOptions = new ImportOptions();
     protected ObjectImporter objImporter;
@@ -33,6 +34,23 @@ public class ThreeDModelImporter : MonoBehaviour
             objImporter.ImportedModel += AddHandInteractionToObj;
         }
     }
+
+    void AddCustomOnImportedScript(Action<GameObject, string> customScript)
+    {
+        if (objImporter != null)
+        {
+            objImporter.ImportedModel += customScript;
+        }
+    }
+
+    void RemoveCustomOnImportedScript(Action<GameObject,string> customScript)
+    {
+        if (objImporter != null)
+        {
+            objImporter.ImportedModel -= customScript;
+        }
+    }
+
     void Start()
     {
         gameObject.GetComponent<Interactable>().OnClick.AddListener(ObjOpernerAsync);
@@ -42,6 +60,12 @@ public class ThreeDModelImporter : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void ObjLoaderAsync(string path)
+    {
+        filePath = path;
+        objImporter.ImportModelAsync(objectName, path, null, importOptions);
     }
 
     async void ObjOpernerAsync()
@@ -69,6 +93,7 @@ public class ThreeDModelImporter : MonoBehaviour
                 Debug.Log("***********************************");
 
                 
+                filePath = file.Path;
                 objImporter.ImportModelAsync(objectName, file.Path, null, importOptions);
 
                 //This section of code reads through the file (and is covered in the link)
@@ -124,5 +149,8 @@ public class ThreeDModelImporter : MonoBehaviour
             subMenu.SetActive(true);
         });
         model.gameObject.AddComponent<ObjectAnchor>();
+        Serializer serializer = model.gameObject.AddComponent<Serializer>();
+        serializer.type = "ImportedObject";
+        gameObject.tag = "ImportedObject";
     }
 }

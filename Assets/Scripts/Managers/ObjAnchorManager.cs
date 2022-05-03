@@ -1,5 +1,6 @@
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,8 @@ public class ObjAnchorManager : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject curAnchor;
-    private Dictionary<GameObject, List<GameObject>> anchorChildrenPairs = new Dictionary<GameObject, List<GameObject>>();
-    private HashSet<GameObject> allObejcts = new HashSet<GameObject>();
+    public Dictionary<GameObject, List<GameObject>> anchorChildrenPairs = new Dictionary<GameObject, List<GameObject>>();
+    public HashSet<GameObject> allObejcts = new HashSet<GameObject>();
     public readonly string THREE_D_OBJ_SUB_MENU_NAME = "3DObjSubMenu";
     public readonly string TOGGLE_OBJ_ANCHOR_NAME = "ToggleObjectAnchorBtn";
     public readonly string ANCHOR_TO_OBJ_NAME = "AnchorToObject";
@@ -170,7 +171,7 @@ public class ObjAnchorManager : MonoBehaviour
         }
     }
 
-    public void Detach(GameObject obj)
+    public void Detach(GameObject obj, bool onDestroy=false)
     {
         GameObject parent = null;
         if (obj.transform.parent != null)
@@ -180,16 +181,18 @@ public class ObjAnchorManager : MonoBehaviour
         if (parent != null && anchorChildrenPairs.ContainsKey(parent))
         {
             anchorChildrenPairs[parent].Remove(obj);
-            obj.transform.parent = null;
-            GameObject menu = GetSubMenu(obj);
-            if (curAnchor != null)
-                ChangeBtnText(GetBtn(menu, ANCHOR_TO_OBJ_NAME), ANCHOR_TO_OBJ_TEXT);
-            else
-                RemoveObjectAnchorBtn(menu);
-            if (anchorChildrenPairs[parent].Count == 0)
+            if(!onDestroy)
             {
-                menu = GetSubMenu(parent);
-                DeactivateButton(menu, UN_GROUP_BTN_NAME);
+                obj.transform.parent = null;
+                GameObject menu = GetSubMenu(obj);
+                ChangeBtnText(GetBtn(menu, ANCHOR_TO_OBJ_NAME), ANCHOR_TO_OBJ_TEXT);
+                if(curAnchor==null)
+                    RemoveObjectAnchorBtn(menu);
+                if (anchorChildrenPairs[parent].Count == 0)
+                {
+                    menu = GetSubMenu(parent);
+                    DeactivateButton(menu, UN_GROUP_BTN_NAME);
+                }
             }
         }
     }

@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 6757593906472876269}
   - component: {fileID: 3385936290468183530}
   - component: {fileID: 148375819506211897}
+  - component: {fileID: 5842874686820710034}
   m_Layer: 0
   m_Name: Waypoint Arrow
-  m_TagString: Untagged
+  m_TagString: ThreeDObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,6 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89490701847dccd46a0afd20fbb0a27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectAnchorManager: {fileID: 0}
 --- !u!114 &7529967669772455657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +203,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTetherWhenManipulating: 0
   IsBoundsHandles: 0
+--- !u!114 &5842874686820710034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b546dcc25258f2459c411ddadb8b919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: Arrow
+  parentUuid: 
+  uuid: e1754eb8-c935-452a-8bd1-b12fc87eed92
 --- !u!1001 &2035070584641600589
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 6832348458078756645}
   - component: {fileID: 6405734628338425519}
   - component: {fileID: 8524669798070066931}
+  - component: {fileID: 3606651292051581637}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: ThreeDObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89490701847dccd46a0afd20fbb0a27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectAnchorManager: {fileID: 0}
 --- !u!114 &8524669798070066931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +200,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 7670035509266723585}
+--- !u!114 &3606651292051581637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417047673990495342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b546dcc25258f2459c411ddadb8b919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: Cube
+  parentUuid: 
+  uuid: 67d7e556-1d8a-4341-9bfa-e44fbc42796f
 --- !u!1001 &4276181440789521336
 PrefabInstance:
   m_ObjectHideFlags: 0

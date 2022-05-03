@@ -6,6 +6,8 @@ TagManager:
   tags:
   - UIElement
   - Sphere
+  - ThreeDObject
+  - ImportedObject
   layers:
   - Default
   - TransparentFX

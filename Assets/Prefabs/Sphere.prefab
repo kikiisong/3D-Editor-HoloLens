@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 799838090164601969}
   - component: {fileID: 4523238032723030575}
   - component: {fileID: 8559460372400217853}
+  - component: {fileID: 4329853737788070502}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: ThreeDObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,8 +33,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158665213126778294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000027101487, y: -0.00057926774, z: -0.00011294335}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 8483358089964806039}
   - {fileID: 5912488991023519336}
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89490701847dccd46a0afd20fbb0a27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectAnchorManager: {fileID: 0}
 --- !u!114 &8559460372400217853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +200,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 3247747149551835577}
+--- !u!114 &4329853737788070502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158665213126778294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b546dcc25258f2459c411ddadb8b919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: Sphere
+  parentUuid: 
+  uuid: df18a93f-8747-4130-8dee-66ad648e15e6
 --- !u!114 &7018356400165983683
 MonoBehaviour:
   m_ObjectHideFlags: 0

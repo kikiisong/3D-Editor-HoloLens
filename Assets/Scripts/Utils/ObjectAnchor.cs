@@ -6,14 +6,10 @@ using UnityEngine;
 public class ObjectAnchor : MonoBehaviour
 {
     // Start is called before the first frame update
-    private ObjAnchorManager objectAnchorManager;
+    public ObjAnchorManager objectAnchorManager=null;
     private void Awake()
     {
         objectAnchorManager = GameObject.Find("ObjectAnchorController").GetComponent<ObjAnchorManager>();
-    }
-
-    void Start()
-    {
         objectAnchorManager.AddToAllObjects(gameObject);
         GameObject menu = objectAnchorManager.GetSubMenu(gameObject);
         GameObject toggleAnchorBtn = objectAnchorManager.GetBtn(menu, objectAnchorManager.TOGGLE_OBJ_ANCHOR_NAME);
@@ -26,6 +22,10 @@ public class ObjectAnchor : MonoBehaviour
         if(unGroupBtn!=null)
             unGroupBtn.GetComponent<Interactable>().OnClick.AddListener(UnGroupBtnListener);
         objectAnchorManager.PostSetAnchorUpdateOtherObjects(objectAnchorManager.curAnchor);
+    }
+
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class ObjectAnchor : MonoBehaviour
 
     void AnchorToObjectBtnListener()
     {
-        if (objectAnchorManager.curAnchor != null && gameObject.transform.parent != null && objectAnchorManager.curAnchor.Equals(gameObject.transform.parent.gameObject))
+        if (gameObject.transform.parent != null)
         {
             objectAnchorManager.Detach(gameObject);
         }
@@ -62,7 +62,7 @@ public class ObjectAnchor : MonoBehaviour
 
     private void OnDestroy()
     {
-        objectAnchorManager.Detach(gameObject);
+        objectAnchorManager.Detach(gameObject,onDestroy: true);
         objectAnchorManager.RemoveFromAllObjects(gameObject);
     }
 
