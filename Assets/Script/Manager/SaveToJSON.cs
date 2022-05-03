@@ -24,19 +24,17 @@ public class SaveToJSON : MonoBehaviour
 
     public void saveToFile()
     {      
-        GameObject[] allUIElemInScene = GameObject.FindGameObjectsWithTag("UIElement");
+        GameObject[] allTextPanel = GameObject.FindGameObjectsWithTag("TextPanel");
         UILayout currentUILayout = new UILayout();
-        foreach (GameObject currUIElem in allUIElemInScene)
+        foreach (GameObject currTextElem in allTextPanel)
         {
-            if (currUIElem.GetComponent("VoiceTitleEdit") != null)
-            {
-                VoiceTitleEdit currTextPanel = (VoiceTitleEdit)(currUIElem.GetComponent("VoiceTitleEdit"));
-                TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currUIElem.transform);
+            
+                VoiceTitleEdit currTextPanel = (VoiceTitleEdit)(currTextElem.GetComponent("VoiceTitleEdit"));
+                TextPanel textPanelToSave = new TextPanel(currTextPanel.textTitle.text, currTextPanel.textContent.text, currTextElem.transform);
                 string textPanelData = JsonUtility.ToJson(textPanelToSave);
                 Debug.Log(textPanelData);
                 currentUILayout.allTextPanels.Add(textPanelToSave);
                 //System.IO.File.WriteAllText("Assets/Resources/data.json", textPanelData);
-            }
         }
 
         string UILayoutData = JsonUtility.ToJson(currentUILayout);
@@ -51,7 +49,7 @@ public class SaveToJSON : MonoBehaviour
             writer.Write(UILayoutData);
         }
 #endif
-        Debug.Log(UILayoutData);
+        //Debug.Log(UILayoutData);
 
     }
 
