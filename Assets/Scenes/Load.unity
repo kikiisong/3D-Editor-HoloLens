@@ -150,6 +150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DebugLog
       objectReference: {fileID: 0}
+    - target: {fileID: 7661447391403502268, guid: c2517ba17cb4dc54c906ebfd091a6d1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7661447391403502271, guid: c2517ba17cb4dc54c906ebfd091a6d1c, type: 3}
       propertyPath: m_RootOrder
       value: 6

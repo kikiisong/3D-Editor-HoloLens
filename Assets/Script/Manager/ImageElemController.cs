@@ -32,7 +32,7 @@ public class ImageElemController : MonoBehaviour
     }
     public void createImg()
     {
-        GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
+   
 #if UNITY_EDITOR
         string path = EditorUtility.OpenFilePanel("Overwrite with jpg", "", "jpg");
         if (path.Length != 0)
@@ -41,7 +41,7 @@ public class ImageElemController : MonoBehaviour
             var tex = new Texture2D(2, 2);
             tex.LoadImage(fileContent);
 
-            //GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
+            GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
             MeshRenderer imgRenderer = (MeshRenderer)(imgPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
             imgRenderer.material.mainTexture=tex;
         }
@@ -70,6 +70,7 @@ public class ImageElemController : MonoBehaviour
                 var tex = new Texture2D(2, 2);
                 tex.LoadImage(fileContent);
 
+                GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
                 MeshRenderer imgRenderer = (MeshRenderer)(imgPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
                 imgRenderer.material.mainTexture=tex;
         
