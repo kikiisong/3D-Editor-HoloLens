@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 8239487776005246630}
   m_Layer: 0
   m_Name: Slate
-  m_TagString: UIElement
+  m_TagString: ImagePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
