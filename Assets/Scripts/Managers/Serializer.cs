@@ -9,12 +9,24 @@ public class Serializer : MonoBehaviour
     public string type;
     public string parentUuid="";
     public string uuid = "";
+    string path;
     ThreeDObject threeDObject=new ThreeDObject();
+    ImportedObject importedObject = new ImportedObject();
 
+    public string Path
+    {
+        get { return path; }
+        set { path = value; }
+    }
     public ThreeDObject ThreeDObject
     {
         get { return threeDObject; }
         set { threeDObject = value; }
+    }
+    public ImportedObject ImportedObject
+    {
+        get { return importedObject; }
+        set { importedObject = value; }
     }
     private void Awake()
     {
@@ -31,7 +43,7 @@ public class Serializer : MonoBehaviour
 
     }
 
-    public ThreeDObject serializeToThreeDObject()
+    string getParentUuid()
     {
         string parent = "";
         if (gameObject.transform.parent != null)
@@ -39,6 +51,10 @@ public class Serializer : MonoBehaviour
             if (gameObject.transform.parent.Equals(Camera.main.transform))
             {
                 parent = "camera";
+            }
+            else if(gameObject.transform.parent.parent!=null && gameObject.transform.parent.parent.gameObject.name == "ModelTarget")
+            {
+
             }
             else
             {
@@ -50,12 +66,26 @@ public class Serializer : MonoBehaviour
                 }
             }
         }
+        return parent;
 
+    }
+
+    public ThreeDObject serializeToThreeDObject()
+    {
+        string parent = getParentUuid();
         this.threeDObject = new ThreeDObject(type: this.type, uuid: this.uuid, _transform: gameObject.transform, parentUuid: parent, isRoot:parent.Equals(""));
         return this.threeDObject;
     }
 
-    public void DeserializeThreeDObjectsStandAlone(ThreeDObject threeDObject)
+    public ImportedObject serializeToImportedObject()
+    {
+        string parent = getParentUuid();
+        this.importedObject = new ImportedObject(path,uuid,gameObject.transform,type,parent,parent.Equals(""));
+
+        return this.importedObject;
+    }
+
+    public void DeserializeThreeDObjectStandAlone(ThreeDObject threeDObject)
     {
         this.threeDObject = threeDObject;
         type = threeDObject.type;
@@ -63,6 +93,12 @@ public class Serializer : MonoBehaviour
         //SetTransformParent(threeDObject.parentUuid, allGameObjects);
         uuid = threeDObject.uuid;
         parentUuid = threeDObject.parentUuid;
+    }
+
+    public void DeserializeImportedObjectStandAlone(ImportedObject importedObject)
+    {
+        path = importedObject.path;
+        DeserializeThreeDObjectStandAlone(importedObject);
     }
 
     public void SetTransformParent(List<GameObject> allGameObjects)

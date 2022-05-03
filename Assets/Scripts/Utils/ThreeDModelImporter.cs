@@ -22,6 +22,8 @@ public class ThreeDModelImporter : MonoBehaviour
     protected ObjectImporter objImporter;
     public GameObject buttonPinMenu;
     public GameObject threeDSubMenu;
+    List<Action> customOnImporteCompletedScripts = new List<Action>();
+    List<Action<GameObject,string>> customOnImportedScripts = new List<Action<GameObject,string>>();
 
     private void Awake()
     {
@@ -31,19 +33,43 @@ public class ThreeDModelImporter : MonoBehaviour
         if (objImporter == null)
         {
             objImporter = gameObject.AddComponent<ObjectImporter>();
-            objImporter.ImportedModel += AddHandInteractionToObj;
+        }
+        objImporter.ImportedModel += AddHandInteractionToObj;
+        foreach(var act in customOnImporteCompletedScripts)
+        {
+            objImporter.ImportingComplete += act;
+        }
+        foreach(var act in customOnImportedScripts)
+        {
+            objImporter.ImportedModel += act;
         }
     }
 
-    void AddCustomOnImportedScript(Action<GameObject, string> customScript)
+    public void AddCustomScriptOnImportCompleted(Action customScript)
     {
-        if (objImporter != null)
+        if (objImporter == null)
+        {
+            customOnImporteCompletedScripts.Add(customScript);
+        }
+        else
+        {
+            objImporter.ImportingComplete += customScript;
+        }
+    }
+
+    public void AddCustomOnImportedScript(Action<GameObject, string> customScript)
+    {
+        if (objImporter == null)
+        {
+            customOnImportedScripts.Add(customScript);
+        }
+        else
         {
             objImporter.ImportedModel += customScript;
         }
     }
 
-    void RemoveCustomOnImportedScript(Action<GameObject,string> customScript)
+    public void RemoveCustomOnImportedScript(Action<GameObject,string> customScript)
     {
         if (objImporter != null)
         {
@@ -53,7 +79,11 @@ public class ThreeDModelImporter : MonoBehaviour
 
     void Start()
     {
-        gameObject.GetComponent<Interactable>().OnClick.AddListener(ObjOpernerAsync);
+        Interactable btn = gameObject.GetComponent<Interactable>();
+        if (btn != null)
+        {
+            btn.OnClick.AddListener(ObjOpernerAsync);
+        }
     }
 
     // Update is called once per frame
@@ -62,7 +92,7 @@ public class ThreeDModelImporter : MonoBehaviour
 
     }
 
-    void ObjLoaderAsync(string path)
+    public void ObjLoaderAsync(string objectName, string path)
     {
         filePath = path;
         objImporter.ImportModelAsync(objectName, path, null, importOptions);
@@ -129,7 +159,7 @@ public class ThreeDModelImporter : MonoBehaviour
         var displayAnchorBtn = subMenu.transform.Find("ButtonCollection").transform.Find("DisplayAnchorBtn").gameObject;
         if (displayAnchorBtn != null)
         {
-            displayAnchorBtn.GetComponent<SetOrbit>().to = gameObject;
+            displayAnchorBtn.GetComponent<SetOrbit>().to = model.gameObject;
         }
         else
         {
@@ -138,7 +168,7 @@ public class ThreeDModelImporter : MonoBehaviour
         var deleteBtn = subMenu.transform.Find("ButtonCollection").transform.Find("DeleteBtn").gameObject;
         DestroyObj[] destroyObjs = deleteBtn.GetComponents<DestroyObj>();
         destroyObjs[0].obj = subMenu;
-        destroyObjs[1].obj = gameObject;
+        destroyObjs[1].obj = model.gameObject;
         // subMenu.AddComponent<DetachTransformParent>();
         var detachChildStore = model.gameObject.AddComponent<DetachChildAndStore>();
         detachChildStore.child = subMenu;
@@ -151,6 +181,9 @@ public class ThreeDModelImporter : MonoBehaviour
         model.gameObject.AddComponent<ObjectAnchor>();
         Serializer serializer = model.gameObject.AddComponent<Serializer>();
         serializer.type = "ImportedObject";
-        gameObject.tag = "ImportedObject";
+        serializer.Path = path;
+        model.gameObject.tag = "ImportedObject";
+        model.transform.parent = null;
+        gameObject.transform.parent = model.transform;
     }
 }

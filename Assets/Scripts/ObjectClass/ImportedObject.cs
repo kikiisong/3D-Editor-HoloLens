@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImportedObject : MonoBehaviour
+[Serializable]
+public class ImportedObject : ThreeDObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public string path;
+    
+    public ImportedObject(string path, string uuid, Transform _transform, string type="ImportedObject", string parentUuid="", bool isRoot = false) : base(uuid, _transform, type, parentUuid, isRoot)
     {
-        
+        this.path = path;
     }
 
-    // Update is called once per frame
-    void Update()
+    public ImportedObject() : base()
     {
-        
+        this.path = "";
     }
+
 }

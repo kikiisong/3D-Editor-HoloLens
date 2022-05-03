@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PhaseSwitchManager : MonoBehaviour
@@ -9,17 +10,32 @@ public class PhaseSwitchManager : MonoBehaviour
     public GameObject cubePrefab;
     public GameObject arrowPrefab;
     public GameObject spherePrefab;
+    public TextMeshPro phaseNameText;
     int curPhase = 0;
+    ThreeDModelImporter importer;
+    List<GameObject> all;
+    public GameObject modelTarget;
+    private void Awake()
+    {
+        all = new List<GameObject>();
+        phases.Add(new SerializedHolder());
+        importer = gameObject.GetComponent<ThreeDModelImporter>();
+        importer.AddCustomOnImportedScript(OnLoaded);
+        importer.AddCustomScriptOnImportCompleted(OnImportCompleted);
+    }
     void Start()
     {
-        phases.Add(new SerializedHolder());
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    void updatePhaseNameText()
+    {
+        phaseNameText.text = "Phase " + curPhase.ToString();
     }
 
     public void PreviousPhase()
@@ -29,6 +45,7 @@ public class PhaseSwitchManager : MonoBehaviour
             RemoveAllObjects();
             curPhase -= 1;
             LoadAllObjects();
+            updatePhaseNameText();
         }
     }
 
@@ -42,13 +59,20 @@ public class PhaseSwitchManager : MonoBehaviour
         {
             phases.Add(new SerializedHolder());
         }
+        updatePhaseNameText();
     }
 
     void LoadAllObjects()
     {
-        List<GameObject> all = new List<GameObject>();
-        LoadAllThreeDObjects(all);
-        foreach(GameObject obj in all)
+        all.Clear();
+        StartLoadAllImportedObjects();
+        LoadAllThreeDObjects();
+        setupTransformParentForAll();
+    }
+
+    void setupTransformParentForAll()
+    {
+        foreach (GameObject obj in all)
         {
             Serializer serializer = obj.GetComponent<Serializer>();
             if (serializer != null)
@@ -58,9 +82,9 @@ public class PhaseSwitchManager : MonoBehaviour
         }
     }
 
-    void LoadAllThreeDObjects(List<GameObject> all)
+    void LoadAllThreeDObjects()
     {
-        foreach(ThreeDObject threeDObject in phases[curPhase].threeDObjects)
+        foreach (ThreeDObject threeDObject in phases[curPhase].threeDObjects)
         {
             GameObject obj = null;
             switch (threeDObject.type)
@@ -78,36 +102,109 @@ public class PhaseSwitchManager : MonoBehaviour
             Serializer serializer = obj.GetComponent<Serializer>();
             if (serializer != null)
             {
-                serializer.DeserializeThreeDObjectsStandAlone(threeDObject);
+                serializer.DeserializeThreeDObjectStandAlone(threeDObject);
             }
             all.Add(obj);
+        }
+    }
+    void OnLoaded(GameObject gameObject, string path)
+    {
+        if (gameObject.transform.parent == null)
+        {
+            all.Add(gameObject.transform.GetChild(0).gameObject);
+        }
+        else
+        {
+            all.Add(gameObject.transform.parent.gameObject);
+        }
+    }
+
+    void OnImportCompleted()
+    {
+        GameObject[] allImported = GameObject.FindGameObjectsWithTag("ImportedObject");
+        foreach (GameObject obj in allImported)
+        {
+            Serializer serializer = obj.GetComponent<Serializer>();
+            if (serializer == null)
+            {
+                continue;
+            }
+            GameObject uuidNamedObj = null;
+            uuidNamedObj = obj.transform.GetChild(1).gameObject;
+            string uuid = uuidNamedObj.name.Substring(0, 36);
+            int phase = int.Parse(uuidNamedObj.name.Substring(36));
+            foreach (ImportedObject importedObject in phases[phase].importedObjects)
+            {
+                if (importedObject.uuid == uuid)
+                {
+                    serializer.DeserializeImportedObjectStandAlone(importedObject);
+                    break;
+                }
+            }
+        }
+        setupTransformParentForAll();
+    }
+
+    void StartLoadAllImportedObjects()
+    {
+        for (int i = 0; i < phases[curPhase].importedObjects.Count; ++i)
+        {
+            ImportedObject importedObject = phases[curPhase].importedObjects[i];
+            string path = importedObject.path;
+            if (path != "")
+            {
+                importer.ObjLoaderAsync(importedObject.uuid + curPhase.ToString(), path);
+            }
         }
     }
 
     void StoreAllObjects()
     {
-        phases[curPhase].threeDObjects.Clear();
         StoreAllThreeDObjects();
+        StoreAllImportedObjects();
     }
+
 
     void StoreAllThreeDObjects()
     {
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("ThreeDObject");
-        foreach(GameObject gameObject in gameObjects)
+        phases[curPhase].threeDObjects.Clear();
+        string tag = "ThreeDObject";
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject gameObject in gameObjects)
         {
             Serializer serializer = gameObject.GetComponent<Serializer>();
             if (serializer != null)
             {
                 phases[curPhase].threeDObjects.Add(serializer.serializeToThreeDObject());
             }
-            //ThreeDObject threeDObject = new ThreeDObject()
+        }
+    }
+
+    void StoreAllImportedObjects()
+    {
+        phases[curPhase].importedObjects.Clear();
+        string tag = "ImportedObject";
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject gameObject in gameObjects)
+        {
+            Serializer serializer = gameObject.GetComponent<Serializer>();
+            if (serializer != null)
+            {
+                phases[curPhase].importedObjects.Add(serializer.serializeToImportedObject());
+            }
         }
     }
 
     void RemoveAllObjects()
     {
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("ThreeDObject");
-        foreach(GameObject gameObject in gameObjects)
+        RemoveAllObjectsGivenTag("ThreeDObject");
+        RemoveAllObjectsGivenTag("ImportedObject");
+    }
+
+    void RemoveAllObjectsGivenTag(string tag)
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject gameObject in gameObjects)
         {
             if (gameObject != null)
             {
