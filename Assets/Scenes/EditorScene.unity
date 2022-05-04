@@ -375,6 +375,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5968494130562754998, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5968494130832926918, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1081,6 +1085,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4123142776013955945, guid: 634369e6107ba27428a00bedc3beadd4, type: 3}
+      propertyPath: textPrefab
+      value: 
+      objectReference: {fileID: 8883154717726363917, guid: 24b2161d9221f7f45a7c0d7417dbffa3, type: 3}
     - target: {fileID: 4123142776013955959, guid: 634369e6107ba27428a00bedc3beadd4, type: 3}
       propertyPath: m_Name
       value: TextElemController
