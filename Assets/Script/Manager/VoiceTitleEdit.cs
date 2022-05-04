@@ -108,4 +108,9 @@ public class VoiceTitleEdit : MonoBehaviour
         dictationRecognizer_content.Dispose();
         PhraseRecognitionSystem.Restart();
     }
+
+    public void deleteText()
+    {
+        Destroy(this.gameObject);
+    }
 }

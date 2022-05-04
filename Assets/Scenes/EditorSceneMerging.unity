@@ -633,6 +633,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6743550938106660504, guid: 03a75419f739d32428cde456f40a7b33, type: 3}
+      propertyPath: logoPrefab
+      value: 
+      objectReference: {fileID: 7116960265403497021, guid: 48a899341eefb244ea3aad19d6140b4a, type: 3}
     - target: {fileID: 6743550938106660506, guid: 03a75419f739d32428cde456f40a7b33, type: 3}
       propertyPath: m_Name
       value: ImageElemController
@@ -888,6 +892,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 564609198407305323, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000000018626451
+      objectReference: {fileID: 0}
     - target: {fileID: 747137996013749219, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -903,6 +911,10 @@ PrefabInstance:
     - target: {fileID: 976186641963185197, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 976186642970633026, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.032000005
       objectReference: {fileID: 0}
     - target: {fileID: 1170551258396916090, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1000,6 +1012,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4340255162661473347, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.031999998
+      objectReference: {fileID: 0}
     - target: {fileID: 4340255163667356498, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_text
       value: Add JHU Logo
@@ -1012,9 +1028,17 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4409376720325797352, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.016
+      objectReference: {fileID: 0}
     - target: {fileID: 4800148249926955564, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518000980570445072, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.031999998
       objectReference: {fileID: 0}
     - target: {fileID: 5888835984093592218, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh
@@ -1072,6 +1096,10 @@ PrefabInstance:
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ImageElemController, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6887883792017037556, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7358345193417769657, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1096,9 +1124,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8610225700230320440, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000000018626451
+      objectReference: {fileID: 0}
     - target: {fileID: 8948297249524253909, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948297250530071482, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017423753783048721, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.032000005
       objectReference: {fileID: 0}
     - target: {fileID: 9017423754923666814, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh

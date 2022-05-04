@@ -11,6 +11,7 @@ TagManager:
   - ImportedObject
   - TextPanelTest
   - ImagePanel
+  - Logo
   layers:
   - Default
   - TransparentFX
