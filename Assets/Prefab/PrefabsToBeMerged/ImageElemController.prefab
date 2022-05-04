@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imgPrefab: {fileID: 7116960265403497021, guid: fb09ac9c4a1fa9746a8fbb390eee1cfa, type: 3}
-  logoPrefab: {fileID: 8619172494002296415, guid: e06408b80b7f22a44b7d8c1d73fb53a2, type: 3}
+  logoPrefab: {fileID: 7116960265403497021, guid: 48a899341eefb244ea3aad19d6140b4a, type: 3}
