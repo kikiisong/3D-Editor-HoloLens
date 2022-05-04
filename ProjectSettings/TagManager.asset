@@ -8,6 +8,7 @@ TagManager:
   - UIElement
   - TextPanelTest
   - ImagePanel
+  - Logo
   layers:
   - Default
   - TransparentFX

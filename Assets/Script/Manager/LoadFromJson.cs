@@ -9,6 +9,7 @@ public class LoadFromJson : MonoBehaviour
 {
     public GameObject textPanelPrefab;
     public GameObject imgPanelPrefab;
+    public GameObject logoPrefab;
     public GameObject debugPanel;
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,20 @@ public class LoadFromJson : MonoBehaviour
             //Debug.Log(JsonUtility.ToJson(currImgPanel));
             InstantiateImgPanel(currImgPanel);
         }
+
+        foreach (Logo currLogo in currentUILayout.allLogos)
+        {
+            //Debug.Log(JsonUtility.ToJson(currImgPanel));
+            InstantiateJHULogo(currLogo);
+        }
+    }
+
+    public void InstantiateJHULogo(Logo m_logo)
+    {
+        GameObject currPanel = Instantiate(logoPrefab, new Vector3(m_logo.m_addonSerializedTransform._position[0], m_logo.m_addonSerializedTransform._position[1], m_logo.m_addonSerializedTransform._position[2]),
+            new Quaternion(m_logo.m_addonSerializedTransform._rotation[1], m_logo.m_addonSerializedTransform._rotation[2], m_logo.m_addonSerializedTransform._rotation[3],
+            m_logo.m_addonSerializedTransform._rotation[0]));
+        currPanel.transform.localScale = new Vector3(m_logo.m_addonSerializedTransform._scale[0], m_logo.m_addonSerializedTransform._scale[1], m_logo.m_addonSerializedTransform._scale[2]);
     }
 
     public void InstantiateImgPanel(ImgPanel m_imgPanel)

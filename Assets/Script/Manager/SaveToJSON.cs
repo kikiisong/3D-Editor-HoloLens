@@ -9,8 +9,6 @@ using TMPro;
 
 public class SaveToJSON : MonoBehaviour
 {
-    public enum UIType { Text, Image };
-
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +45,16 @@ public class SaveToJSON : MonoBehaviour
             string imgPanelData = JsonUtility.ToJson(imgPanelToSave);
             Debug.Log(imgPanelData);
             currentUILayout.allImgPanels.Add(imgPanelToSave);
+        }
+
+        GameObject[] allLogos = GameObject.FindGameObjectsWithTag("Logo");
+        foreach (GameObject currLogo in allLogos)
+        {
+            Logo logoToSave = new Logo(currLogo.transform);
+
+            string logoData = JsonUtility.ToJson(logoToSave);
+            Debug.Log(logoData);
+            currentUILayout.allLogos.Add(logoToSave);
         }
 
         string UILayoutData = JsonUtility.ToJson(currentUILayout);
@@ -108,9 +116,22 @@ public class SaveToJSON : MonoBehaviour
 public class UILayout
 {
     public List<TextPanel> allTextPanels = new List<TextPanel>();
-    public List<ImgPanel> allImgPanels = new List<ImgPanel>();
+    public List<ImgPanel> allImgPanels = new List<ImgPanel>(); 
+    public List<Logo> allLogos = new List<Logo>();
 
 }
+
+[System.Serializable]
+public class Logo
+{
+    public SerializedTransform m_addonSerializedTransform;
+
+    public Logo(Transform a_transform)
+    {
+        m_addonSerializedTransform = new SerializedTransform(a_transform);
+    }
+}
+
 
 [System.Serializable]
 public class ImgPanel

@@ -715,6 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPanelPrefab: {fileID: 7661447391403502268, guid: c2517ba17cb4dc54c906ebfd091a6d1c, type: 3}
   imgPanelPrefab: {fileID: 454524765916830297, guid: a8f95860ae23b88449d72449c6a074f8, type: 3}
+  logoPrefab: {fileID: 3017371612139455114, guid: fa81ca44ba13b204dae8dea04e96eb09, type: 3}
   debugPanel: {fileID: 449183247}
 --- !u!1 &2090024205 stripped
 GameObject:
