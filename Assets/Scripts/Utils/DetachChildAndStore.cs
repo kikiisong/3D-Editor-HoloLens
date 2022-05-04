@@ -6,9 +6,12 @@ public class DetachChildAndStore : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject child;
-    void Start()
+    private void Awake()
     {
         child.transform.parent = null;
+    }
+    void Start()
+    {
     }
 
     // Update is called once per frame

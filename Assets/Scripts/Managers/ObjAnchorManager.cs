@@ -121,10 +121,11 @@ public class ObjAnchorManager : MonoBehaviour
         }
     }
 
-    public void SetAsAnchor(GameObject obj)
+    public void SetAsAnchor(GameObject obj, bool doDetach=true)
     {
         curAnchor = obj;
-        Detach(obj);
+        if(doDetach)
+            Detach(obj);
         if (!anchorChildrenPairs.ContainsKey(obj))
         {
             anchorChildrenPairs[obj] = new List<GameObject>();
@@ -188,11 +189,11 @@ public class ObjAnchorManager : MonoBehaviour
                 ChangeBtnText(GetBtn(menu, ANCHOR_TO_OBJ_NAME), ANCHOR_TO_OBJ_TEXT);
                 if(curAnchor==null)
                     RemoveObjectAnchorBtn(menu);
-                if (anchorChildrenPairs[parent].Count == 0)
-                {
-                    menu = GetSubMenu(parent);
-                    DeactivateButton(menu, UN_GROUP_BTN_NAME);
-                }
+            }
+            if (anchorChildrenPairs[parent].Count == 0)
+            {
+                GameObject menu = GetSubMenu(parent);
+                DeactivateButton(menu, UN_GROUP_BTN_NAME);
             }
         }
     }

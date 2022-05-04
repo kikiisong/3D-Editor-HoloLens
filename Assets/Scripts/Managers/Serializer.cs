@@ -10,6 +10,7 @@ public class Serializer : MonoBehaviour
     public string parentUuid="";
     public string uuid = "";
     string path;
+    bool modelTargetActivated = false;
     ThreeDObject threeDObject=new ThreeDObject();
     ImportedObject importedObject = new ImportedObject();
 
@@ -52,10 +53,6 @@ public class Serializer : MonoBehaviour
             {
                 parent = "camera";
             }
-            else if(gameObject.transform.parent.parent!=null && gameObject.transform.parent.parent.gameObject.name == "ModelTarget")
-            {
-
-            }
             else
             {
                 GameObject parentObj = gameObject.transform.parent.gameObject;
@@ -85,6 +82,12 @@ public class Serializer : MonoBehaviour
         return this.importedObject;
     }
 
+    public bool serializeModelTarget()
+    {
+        this.modelTargetActivated = gameObject.transform.parent.gameObject.activeSelf;
+        return this.modelTargetActivated;
+    }
+
     public void DeserializeThreeDObjectStandAlone(ThreeDObject threeDObject)
     {
         this.threeDObject = threeDObject;
@@ -99,6 +102,17 @@ public class Serializer : MonoBehaviour
     {
         path = importedObject.path;
         DeserializeThreeDObjectStandAlone(importedObject);
+    }
+
+    public void DeserializeModelTarget(bool active)
+    {
+        this.modelTargetActivated = active;
+        gameObject.transform.parent.gameObject.SetActive(active);
+        GameObject modelTargetSubMenu = GameObject.Find("3DObjSubMenuModelTarget");
+        if (modelTargetSubMenu != null)
+        {
+            modelTargetSubMenu.SetActive(active);
+        }
     }
 
     public void SetTransformParent(List<GameObject> allGameObjects)
@@ -120,7 +134,7 @@ public class Serializer : MonoBehaviour
                         ObjectAnchor thisObjAnchor = gameObject.GetComponent<ObjectAnchor>();
                         if(objAnchorParent!=null && thisObjAnchor != null)
                         {
-                            objAnchorParent.objectAnchorManager.SetAsAnchor(obj);
+                            objAnchorParent.objectAnchorManager.SetAsAnchor(obj,false);
                             thisObjAnchor.objectAnchorManager.Attache(gameObject);
                             objAnchorParent.objectAnchorManager.UnSetAnchor(obj);
                             threeDObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);

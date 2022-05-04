@@ -171,7 +171,9 @@ public class ThreeDModelImporter : MonoBehaviour
         destroyObjs[1].obj = model.gameObject;
         // subMenu.AddComponent<DetachTransformParent>();
         var detachChildStore = model.gameObject.AddComponent<DetachChildAndStore>();
+        detachChildStore.enabled = true;
         detachChildStore.child = subMenu;
+        subMenu.transform.parent = null;
         subMenu.SetActive(false);
         var btnPinMenu = Instantiate<GameObject>(buttonPinMenu, model.transform);
         btnPinMenu.GetComponent<ButtonConfigHelper>().OnClick.AddListener(()=>

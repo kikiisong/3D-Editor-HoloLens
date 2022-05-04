@@ -42,6 +42,7 @@ public class PhaseSwitchManager : MonoBehaviour
     {
         if (curPhase > 0)
         {
+            StoreAllObjects();
             RemoveAllObjects();
             curPhase -= 1;
             LoadAllObjects();
@@ -59,6 +60,10 @@ public class PhaseSwitchManager : MonoBehaviour
         {
             phases.Add(new SerializedHolder());
         }
+        else
+        {
+            LoadAllObjects();
+        }
         updatePhaseNameText();
     }
 
@@ -67,6 +72,7 @@ public class PhaseSwitchManager : MonoBehaviour
         all.Clear();
         StartLoadAllImportedObjects();
         LoadAllThreeDObjects();
+        LoadModelTarget();
         setupTransformParentForAll();
     }
 
@@ -80,6 +86,31 @@ public class PhaseSwitchManager : MonoBehaviour
                 serializer.SetTransformParent(all);
             }
         }
+        PostSetTransformDisableMeshOfModelTargetChildren();
+    }
+
+    void PostSetTransformDisableMeshOfModelTargetChildren()
+    {
+        MeshRenderer[] render = modelTarget.GetComponentsInChildren<MeshRenderer>(includeInactive:true);
+        Collider[] collider = modelTarget.GetComponentsInChildren<Collider>(includeInactive:true);
+        foreach(var v in render)
+        {
+            v.enabled = false;
+        }
+        foreach(var v in collider)
+        {
+            v.enabled = false;
+        }
+    }
+
+    void LoadModelTarget()
+    {
+        Serializer serializer = modelTarget.GetComponent<Serializer>();
+        if (serializer != null)
+        {
+            serializer.DeserializeModelTarget(phases[curPhase].modelTargetActivated);
+        }
+        all.Add(modelTarget);
     }
 
     void LoadAllThreeDObjects()
@@ -160,8 +191,11 @@ public class PhaseSwitchManager : MonoBehaviour
 
     void StoreAllObjects()
     {
+        StoreModelTarget();
+        modelTarget.transform.parent.gameObject.SetActive(true);
         StoreAllThreeDObjects();
         StoreAllImportedObjects();
+        modelTarget.transform.parent.gameObject.SetActive(phases[curPhase].modelTargetActivated);
     }
 
 
@@ -195,10 +229,49 @@ public class PhaseSwitchManager : MonoBehaviour
         }
     }
 
+    void StoreModelTarget()
+    {
+        Serializer serializer = modelTarget.GetComponent<Serializer>();
+        if (serializer != null)
+        {
+            phases[curPhase].modelTargetActivated = serializer.serializeModelTarget();
+        }
+    }
+
     void RemoveAllObjects()
     {
         RemoveAllObjectsGivenTag("ThreeDObject");
         RemoveAllObjectsGivenTag("ImportedObject");
+        RemoveModelTarget();
+    }
+
+    void RemoveModelTarget()
+    {
+        modelTarget.transform.parent.gameObject.SetActive(false);
+        List<GameObject> toBeDestroied = new List<GameObject>();
+        for(int i = 0; i < modelTarget.transform.childCount; i++)
+        {
+            GameObject child = modelTarget.transform.GetChild(i).gameObject;
+            if (child.GetComponent<Serializer>() != null)
+            {
+                toBeDestroied.Add(child);
+            }
+        }
+        foreach(GameObject child in toBeDestroied)
+        {
+            Destroy(child);
+        }
+        GameObject modelTargetSubMenu = GameObject.Find("3DObjSubMenuModelTarget");
+        if (modelTargetSubMenu != null)
+        {
+            modelTargetSubMenu.SetActive(false);
+        }
+        ObjectAnchor anchor =  modelTarget.GetComponent<ObjectAnchor>();
+        if (anchor != null)
+        {
+            anchor.objectAnchorManager.UnGroup(modelTarget);
+            anchor.objectAnchorManager.UnSetAnchor(modelTarget);
+        }
     }
 
     void RemoveAllObjectsGivenTag(string tag)
