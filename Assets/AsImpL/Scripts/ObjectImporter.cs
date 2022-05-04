@@ -430,8 +430,8 @@ namespace AsImpL
                         Destroy(loader);
                     }
                     loaderList.Clear();
+                    OnImportingComplete();
                 }
-                OnImportingComplete();
             }
         }
 
@@ -488,6 +488,5 @@ namespace AsImpL
                 ImportError(absolutePath);
             }
         }
-
     }
 }

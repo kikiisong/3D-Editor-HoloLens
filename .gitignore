@@ -75,4 +75,6 @@ crashlytics-build.properties
 
 # Custom
 .vsconfig
+
+/Packages/com.ptc.vuforia.engine-10.6.3.tgz
 Assets/Resources/data.json

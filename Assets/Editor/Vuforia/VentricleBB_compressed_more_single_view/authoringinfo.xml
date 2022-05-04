@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<QCARInfo>
+    <TargetSet version="33.0" toolVersion="v5.2.0-11-g13bb334">
+        <ModelTarget name="VentricleBB_compressed_more" targetId="dea4ac1599e74b2fbbcf7505dc17ef3d" version="11.1" toolVersion="v5.2.0-11-g13bb334" bbox="-0.058723 0.040464 0.008605 0.074089 0.229735 0.214453" trackingMode="scan" upVector="0.0 0.0 1.0" />
+    </TargetSet>
+    <Assembly name="VentricleBB_compressed_more" assemblyId="08a99aa51ff0438886442365ed13093d">
+        <Part name="VentricleBB_compressed_more" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint name="(none)" trained="yes" />
+    </Assembly>
+</QCARInfo>
