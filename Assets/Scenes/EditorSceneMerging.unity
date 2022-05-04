@@ -633,6 +633,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6743550938106660504, guid: 03a75419f739d32428cde456f40a7b33, type: 3}
+      propertyPath: logoPrefab
+      value: 
+      objectReference: {fileID: 7116960265403497021, guid: 48a899341eefb244ea3aad19d6140b4a, type: 3}
     - target: {fileID: 6743550938106660506, guid: 03a75419f739d32428cde456f40a7b33, type: 3}
       propertyPath: m_Name
       value: ImageElemController
