@@ -27,7 +27,7 @@ public class SerializedTransformPositionRotationScale
         _scale[2] = 1;
 
     }
-    public SerializedTransformPositionRotationScale(Transform transform, bool worldSpace = false)
+   public SerializedTransformPositionRotationScale(Transform transform, bool worldSpace = false)
     {
         this.worldSpace = worldSpace;
         if (this.worldSpace)

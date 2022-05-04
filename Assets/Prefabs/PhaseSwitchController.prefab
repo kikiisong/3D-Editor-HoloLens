@@ -48,6 +48,9 @@ MonoBehaviour:
   cubePrefab: {fileID: 7417047673990495342, guid: 3c4a79f42e2a7da439395211b44f472f, type: 3}
   arrowPrefab: {fileID: 100002, guid: 0bf73d4b4f2d14346bb56b2164eda25f, type: 3}
   spherePrefab: {fileID: 158665213126778294, guid: df787204f020977409da448b4c0645a9, type: 3}
+  textPanelPrefab: {fileID: 8883154717726363917, guid: 24b2161d9221f7f45a7c0d7417dbffa3, type: 3}
+  imgPanelPrefab: {fileID: 2776312946980270753, guid: 23084088a96819947923b1a60bc5ba1e, type: 3}
+  logoPrefab: {fileID: 1882011398487693300, guid: 1234592ef5c7abd4db83c0deb39b91bb, type: 3}
   phaseNameText: {fileID: 0}
   modelTarget: {fileID: 0}
 --- !u!114 &5552491669848477773

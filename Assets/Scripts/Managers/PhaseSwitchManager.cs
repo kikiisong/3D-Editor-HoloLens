@@ -10,11 +10,22 @@ public class PhaseSwitchManager : MonoBehaviour
     public GameObject cubePrefab;
     public GameObject arrowPrefab;
     public GameObject spherePrefab;
+    public GameObject textPanelPrefab;
+    public GameObject imgPanelPrefab;
+    public GameObject logoPrefab;
+
     public TextMeshPro phaseNameText;
     int curPhase = 0;
     ThreeDModelImporter importer;
     List<GameObject> all;
     public GameObject modelTarget;
+
+    public const string THREE_D_OBJECT_TAG = "ThreeDObject"; // Note logo is considered as ThreeDObject
+    public const string IMPORTED_OBJECT_TAG = "ImportedObject";
+    public const string MODEL_TARGET_TAG = "ModelTarget";
+    public const string TEXT_OBJECT_TAG = "TextPanel";
+    public const string TWO_D_OBJECT_TAG = "ImagePanel";
+
     private void Awake()
     {
         all = new List<GameObject>();
@@ -71,7 +82,9 @@ public class PhaseSwitchManager : MonoBehaviour
     {
         all.Clear();
         StartLoadAllImportedObjects();
+        LoadAllTwoDObjects();
         LoadAllThreeDObjects();
+        LoadAllTextObjects();
         LoadModelTarget();
         setupTransformParentForAll();
     }
@@ -91,16 +104,19 @@ public class PhaseSwitchManager : MonoBehaviour
 
     void PostSetTransformDisableMeshOfModelTargetChildren()
     {
-        MeshRenderer[] render = modelTarget.GetComponentsInChildren<MeshRenderer>(includeInactive:true);
-        Collider[] collider = modelTarget.GetComponentsInChildren<Collider>(includeInactive:true);
-        foreach(var v in render)
+        MeshRenderer[] render = modelTarget.GetComponentsInChildren<MeshRenderer>(includeInactive: true);
+        Collider[] collider = modelTarget.GetComponentsInChildren<Collider>(includeInactive: true);
+        var canvasComponents = modelTarget.GetComponentsInChildren<Canvas>(true);
+        foreach (var v in render)
         {
             v.enabled = false;
         }
-        foreach(var v in collider)
+        foreach (var v in collider)
         {
             v.enabled = false;
         }
+        foreach (var component in canvasComponents)
+            component.enabled = false;
     }
 
     void LoadModelTarget()
@@ -129,6 +145,9 @@ public class PhaseSwitchManager : MonoBehaviour
                 case "Arrow":
                     obj = Instantiate<GameObject>(arrowPrefab);
                     break;
+                case "Logo":
+                    obj = Instantiate<GameObject>(logoPrefab);
+                    break;
             }
             Serializer serializer = obj.GetComponent<Serializer>();
             if (serializer != null)
@@ -138,6 +157,35 @@ public class PhaseSwitchManager : MonoBehaviour
             all.Add(obj);
         }
     }
+
+    void LoadAllTwoDObjects()
+    {
+        foreach (TwoDObject twoDObject in phases[curPhase].twoDObjects)
+        {
+            GameObject obj = Instantiate<GameObject>(imgPanelPrefab);
+            Serializer serializer = obj.GetComponent<Serializer>();
+            if (serializer != null)
+            {
+                serializer.DesrializeTwoDObjectStandAlone(twoDObject);
+            }
+            all.Add(obj);
+        }
+    }
+
+    void LoadAllTextObjects()
+    {
+        foreach (TextObject textObject in phases[curPhase].textObjects)
+        {
+            GameObject obj = Instantiate<GameObject>(textPanelPrefab);
+            Serializer serializer = obj.GetComponent<Serializer>();
+            if (serializer != null)
+            {
+                serializer.DeserializeTextObjectStandAlone(textObject);
+            }
+            all.Add(obj);
+        }
+    }
+
     void OnLoaded(GameObject gameObject, string path)
     {
         if (gameObject.transform.parent == null)
@@ -152,7 +200,7 @@ public class PhaseSwitchManager : MonoBehaviour
 
     void OnImportCompleted()
     {
-        GameObject[] allImported = GameObject.FindGameObjectsWithTag("ImportedObject");
+        GameObject[] allImported = GameObject.FindGameObjectsWithTag(IMPORTED_OBJECT_TAG);
         foreach (GameObject obj in allImported)
         {
             Serializer serializer = obj.GetComponent<Serializer>();
@@ -194,22 +242,53 @@ public class PhaseSwitchManager : MonoBehaviour
         StoreModelTarget();
         modelTarget.transform.parent.gameObject.SetActive(true);
         StoreAllThreeDObjects();
+        StoreAllTextObjects();
+        StoreAllTwoDObjects();
         StoreAllImportedObjects();
         modelTarget.transform.parent.gameObject.SetActive(phases[curPhase].modelTargetActivated);
     }
 
-
     void StoreAllThreeDObjects()
     {
         phases[curPhase].threeDObjects.Clear();
-        string tag = "ThreeDObject";
+        string tag = THREE_D_OBJECT_TAG;
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
         foreach (GameObject gameObject in gameObjects)
         {
             Serializer serializer = gameObject.GetComponent<Serializer>();
             if (serializer != null)
             {
-                phases[curPhase].threeDObjects.Add(serializer.serializeToThreeDObject());
+                phases[curPhase].threeDObjects.Add(serializer.SerializeToThreeDObject());
+            }
+        }
+    }
+
+    void StoreAllTwoDObjects()
+    {
+        phases[curPhase].twoDObjects.Clear();
+        string tag = TWO_D_OBJECT_TAG;
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject gameObject in gameObjects)
+        {
+            Serializer serializer = gameObject.GetComponent<Serializer>();
+            if (serializer != null)
+            {
+                phases[curPhase].twoDObjects.Add(serializer.SerializeToTwoDObject());
+            }
+        }
+    }
+
+    void StoreAllTextObjects()
+    {
+        phases[curPhase].textObjects.Clear();
+        string tag = TEXT_OBJECT_TAG;
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject gameObject in gameObjects)
+        {
+            Serializer serializer = gameObject.GetComponent<Serializer>();
+            if (serializer != null)
+            {
+                phases[curPhase].textObjects.Add(serializer.SerializeToTextObject());
             }
         }
     }
@@ -217,14 +296,14 @@ public class PhaseSwitchManager : MonoBehaviour
     void StoreAllImportedObjects()
     {
         phases[curPhase].importedObjects.Clear();
-        string tag = "ImportedObject";
+        string tag = IMPORTED_OBJECT_TAG;
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
         foreach (GameObject gameObject in gameObjects)
         {
             Serializer serializer = gameObject.GetComponent<Serializer>();
             if (serializer != null)
             {
-                phases[curPhase].importedObjects.Add(serializer.serializeToImportedObject());
+                phases[curPhase].importedObjects.Add(serializer.SerializeToImportedObject());
             }
         }
     }
@@ -234,14 +313,16 @@ public class PhaseSwitchManager : MonoBehaviour
         Serializer serializer = modelTarget.GetComponent<Serializer>();
         if (serializer != null)
         {
-            phases[curPhase].modelTargetActivated = serializer.serializeModelTarget();
+            phases[curPhase].modelTargetActivated = serializer.SerializeModelTarget();
         }
     }
 
     void RemoveAllObjects()
     {
-        RemoveAllObjectsGivenTag("ThreeDObject");
-        RemoveAllObjectsGivenTag("ImportedObject");
+        RemoveAllObjectsGivenTag(THREE_D_OBJECT_TAG);
+        RemoveAllObjectsGivenTag(IMPORTED_OBJECT_TAG);
+        RemoveAllObjectsGivenTag(TWO_D_OBJECT_TAG);
+        RemoveAllObjectsGivenTag(TEXT_OBJECT_TAG);
         RemoveModelTarget();
     }
 
@@ -249,7 +330,7 @@ public class PhaseSwitchManager : MonoBehaviour
     {
         modelTarget.transform.parent.gameObject.SetActive(false);
         List<GameObject> toBeDestroied = new List<GameObject>();
-        for(int i = 0; i < modelTarget.transform.childCount; i++)
+        for (int i = 0; i < modelTarget.transform.childCount; i++)
         {
             GameObject child = modelTarget.transform.GetChild(i).gameObject;
             if (child.GetComponent<Serializer>() != null)
@@ -257,7 +338,7 @@ public class PhaseSwitchManager : MonoBehaviour
                 toBeDestroied.Add(child);
             }
         }
-        foreach(GameObject child in toBeDestroied)
+        foreach (GameObject child in toBeDestroied)
         {
             Destroy(child);
         }
@@ -266,7 +347,7 @@ public class PhaseSwitchManager : MonoBehaviour
         {
             modelTargetSubMenu.SetActive(false);
         }
-        ObjectAnchor anchor =  modelTarget.GetComponent<ObjectAnchor>();
+        ObjectAnchor anchor = modelTarget.GetComponent<ObjectAnchor>();
         if (anchor != null)
         {
             anchor.objectAnchorManager.UnGroup(modelTarget);
