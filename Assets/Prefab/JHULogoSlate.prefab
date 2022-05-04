@@ -514,16 +514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeList:
-  - Name: ButtonTwoA
-    Offset: {x: 0, y: 0}
-    Radius: 0
-    Transform: {fileID: 4132842932414084725}
-    Colliders: []
-  - Name: ButtonTwoB
-    Offset: {x: 0, y: 0}
-    Radius: 0
-    Transform: {fileID: 8860021012830954046}
-    Colliders: []
   - Name: ButtonTwoB (1)
     Offset: {x: 0, y: 0}
     Radius: 0
@@ -542,7 +532,7 @@ MonoBehaviour:
   radialRange: 180
   distance: 0
   rows: 1
-  columns: 3
+  columns: 1
   cellWidth: 0.096
   cellHeight: 0.032
   assetVersion: 1
@@ -583,7 +573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7116960263719789526
 Transform:
   m_ObjectHideFlags: 0
@@ -1136,10 +1126,9 @@ GameObject:
   - component: {fileID: 9209409430529489098}
   - component: {fileID: 8824349767570933177}
   - component: {fileID: 8239487776005246630}
-  - component: {fileID: 1904603953196492538}
-  - component: {fileID: 8895255471951247347}
+  - component: {fileID: 394783421441657433}
   m_Layer: 0
-  m_Name: Slate
+  m_Name: JHULogoSlate
   m_TagString: ImagePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1389,7 +1378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTetherWhenManipulating: 0
   IsBoundsHandles: 0
---- !u!114 &1904603953196492538
+--- !u!114 &394783421441657433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1398,24 +1387,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7116960265403497021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edfd8baa8204b024fb12d07c2fc4f05f, type: 3}
+  m_Script: {fileID: 11500000, guid: 29c3619784c72e149b686ec48f333285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_imagePath: 
---- !u!114 &8895255471951247347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7116960265403497021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23005205ffe7dfd4aa45a59382e416b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textTitle: {fileID: 7116960265027963435}
-  buttonTitle: {fileID: 6010188684016540333}
 --- !u!114 &1847347981435178622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,7 +1712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3126786008848669196, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3126786009469193090, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: m_Mesh
@@ -1902,27 +1876,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
---- !u!1 &4132842934008443028 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3126786008848669196, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
-  m_PrefabInstance: {fileID: 1314591011881118360}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4132842932414084725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3126786010476584173, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
   m_PrefabInstance: {fileID: 1314591011881118360}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6010188684016540333 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4707993670919958581, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
-  m_PrefabInstance: {fileID: 1314591011881118360}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4132842934008443028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf098d972aeb8b4daa70b00381af006, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4132842933555224932 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3126786009469193212, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
@@ -1934,6 +1892,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4132842934008443028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3126786008848669196, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
+  m_PrefabInstance: {fileID: 1314591011881118360}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2159717734401026865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2015,7 +1978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3126786010476584173, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.09600001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3126786010476584173, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2068,14 +2031,14 @@ PrefabInstance:
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1904603953196492538}
+      objectReference: {fileID: 394783421441657433}
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: deleteImg
+      value: deleteLogo
       objectReference: {fileID: 0}
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ImportedImg, Assembly-CSharp
+      value: JHULogo, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -2157,7 +2120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3126786008848669196, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3126786009469193090, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: m_Mesh
@@ -2274,7 +2237,7 @@ PrefabInstance:
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1904603953196492538}
+      objectReference: {fileID: 0}
     - target: {fileID: 5487525929659315375, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: useNewImg
