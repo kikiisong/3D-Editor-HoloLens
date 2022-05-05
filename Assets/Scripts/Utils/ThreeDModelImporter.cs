@@ -16,6 +16,7 @@ using System;
 public class ThreeDModelImporter : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool isEditor = true;
     public string filePath;
     protected string objectName = "ImportedObj";
     protected ImportOptions importOptions = new ImportOptions();
@@ -23,7 +24,7 @@ public class ThreeDModelImporter : MonoBehaviour
     public GameObject buttonPinMenu;
     public GameObject threeDSubMenu;
     List<Action> customOnImporteCompletedScripts = new List<Action>();
-    List<Action<GameObject,string>> customOnImportedScripts = new List<Action<GameObject,string>>();
+    List<Action<GameObject, string>> customOnImportedScripts = new List<Action<GameObject, string>>();
 
     private void Awake()
     {
@@ -35,11 +36,11 @@ public class ThreeDModelImporter : MonoBehaviour
             objImporter = gameObject.AddComponent<ObjectImporter>();
         }
         objImporter.ImportedModel += AddHandInteractionToObj;
-        foreach(var act in customOnImporteCompletedScripts)
+        foreach (var act in customOnImporteCompletedScripts)
         {
             objImporter.ImportingComplete += act;
         }
-        foreach(var act in customOnImportedScripts)
+        foreach (var act in customOnImportedScripts)
         {
             objImporter.ImportedModel += act;
         }
@@ -69,7 +70,7 @@ public class ThreeDModelImporter : MonoBehaviour
         }
     }
 
-    public void RemoveCustomOnImportedScript(Action<GameObject,string> customScript)
+    public void RemoveCustomOnImportedScript(Action<GameObject, string> customScript)
     {
         if (objImporter != null)
         {
@@ -155,33 +156,37 @@ public class ThreeDModelImporter : MonoBehaviour
         var model = gameObject.transform.GetChild(0);
         var meshCollider = model.gameObject.AddComponent<MeshCollider>();
         meshCollider.convex = true;
-        model.gameObject.AddComponent<ObjectManipulator>();
-        model.gameObject.AddComponent<NearInteractionGrabbable>();
-        var subMenu = Instantiate<GameObject>(threeDSubMenu, model.transform);
-        var displayAnchorBtn = subMenu.transform.Find("ButtonCollection").transform.Find("DisplayAnchorBtn").gameObject;
-        if (displayAnchorBtn != null)
+        if (isEditor)
         {
-            displayAnchorBtn.GetComponent<SetOrbit>().to = model.gameObject;
+            model.gameObject.AddComponent<ObjectManipulator>();
+            model.gameObject.AddComponent<NearInteractionGrabbable>();
+            var subMenu = Instantiate<GameObject>(threeDSubMenu, model.transform);
+            var displayAnchorBtn = subMenu.transform.Find("ButtonCollection").transform.Find("DisplayAnchorBtn").gameObject;
+            if (displayAnchorBtn != null)
+            {
+                displayAnchorBtn.GetComponent<DisplayAnchor>().to = model.gameObject;
+            }
+            else
+            {
+                Debug.Log("displayAnchorBtn not found");
+            }
+            var deleteBtn = subMenu.transform.Find("ButtonCollection").transform.Find("DeleteBtn").gameObject;
+            DestroyObj[] destroyObjs = deleteBtn.GetComponents<DestroyObj>();
+            destroyObjs[0].obj = subMenu;
+            destroyObjs[1].obj = model.gameObject;
+            // subMenu.AddComponent<DetachTransformParent>();
+            var detachChildStore = model.gameObject.AddComponent<DetachChildAndStore>();
+            detachChildStore.enabled = true;
+            detachChildStore.child = subMenu;
+            subMenu.transform.parent = null;
+            subMenu.SetActive(false);
+            var btnPinMenu = Instantiate<GameObject>(buttonPinMenu, model.transform);
+            btnPinMenu.GetComponent<ButtonConfigHelper>().OnClick.AddListener(() =>
+            {
+                subMenu.SetActive(true);
+            });
+
         }
-        else
-        {
-            Debug.Log("displayAnchorBtn not found");
-        }
-        var deleteBtn = subMenu.transform.Find("ButtonCollection").transform.Find("DeleteBtn").gameObject;
-        DestroyObj[] destroyObjs = deleteBtn.GetComponents<DestroyObj>();
-        destroyObjs[0].obj = subMenu;
-        destroyObjs[1].obj = model.gameObject;
-        // subMenu.AddComponent<DetachTransformParent>();
-        var detachChildStore = model.gameObject.AddComponent<DetachChildAndStore>();
-        detachChildStore.enabled = true;
-        detachChildStore.child = subMenu;
-        subMenu.transform.parent = null;
-        subMenu.SetActive(false);
-        var btnPinMenu = Instantiate<GameObject>(buttonPinMenu, model.transform);
-        btnPinMenu.GetComponent<ButtonConfigHelper>().OnClick.AddListener(()=>
-        {
-            subMenu.SetActive(true);
-        });
         model.gameObject.AddComponent<ObjectAnchor>();
         Serializer serializer = model.gameObject.AddComponent<Serializer>();
         serializer.type = "ImportedObject";

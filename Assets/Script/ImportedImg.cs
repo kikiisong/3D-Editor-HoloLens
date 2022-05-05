@@ -30,7 +30,7 @@ public class ImportedImg : MonoBehaviour
     public void useNewImg()
     {
 #if UNITY_EDITOR
-        string path = EditorUtility.OpenFilePanel("Overwrite with jpg", "", "jpg");
+        string path = EditorUtility.OpenFilePanel("Overwrite with image", "", "jpg,png,jpeg");
         if (path.Length != 0)
         {
             var fileContent = File.ReadAllBytes(path);
@@ -54,6 +54,7 @@ public class ImportedImg : MonoBehaviour
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
+            picker.FileTypeFilter.Add(".PNG");
             //filepicker.FileTypeFilter.Add("*");
             //filepicker.FileTypeFilter.Add(".jpg");
 

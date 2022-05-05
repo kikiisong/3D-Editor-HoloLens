@@ -46,30 +46,38 @@ public class ObjAnchorManager : MonoBehaviour
 
     void ChangeBtnText(GameObject btn, string text)
     {
-        if(btn!=null)
+        if (btn != null)
             btn.GetComponent<ButtonConfigHelper>().MainLabelText = text;
     }
 
     public GameObject GetBtn(GameObject objMenu, string name)
     {
-        GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
-        Transform btn_transform = collection.transform.Find(name);
-        if (btn_transform != null)
-            return btn_transform.gameObject;
+        if (objMenu != null)
+        {
+            GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
+            Transform btn_transform = collection.transform.Find(name);
+            if (btn_transform != null)
+                return btn_transform.gameObject;
+            else
+                return null;
+        }
         else
             return null;
     }
 
     void ActivateButton(GameObject objMenu, string name)
     {
-        GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
-        Transform btn_transform = collection.transform.Find(name);
-        if(btn_transform!=null)
+        if (objMenu != null)
         {
-            GameObject btn = btn_transform.gameObject;
-            btn.SetActive(true);
+            GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
+            Transform btn_transform = collection.transform.Find(name);
+            if (btn_transform != null)
+            {
+                GameObject btn = btn_transform.gameObject;
+                btn.SetActive(true);
+            }
+            collection.GetComponent<GridObjectCollection>().UpdateCollection();
         }
-        collection.GetComponent<GridObjectCollection>().UpdateCollection();
     }
     void DeactivateButton(GameObject objMenu, string name)
     {
@@ -77,7 +85,7 @@ public class ObjAnchorManager : MonoBehaviour
         {
             GameObject collection = objMenu.transform.Find("ButtonCollection").gameObject;
             Transform btn_transform = collection.transform.Find(name);
-            if(btn_transform!=null)
+            if (btn_transform != null)
             {
                 GameObject btn = btn_transform.gameObject;
                 btn.SetActive(false);
@@ -99,14 +107,17 @@ public class ObjAnchorManager : MonoBehaviour
     public GameObject GetSubMenu(GameObject obj)
     {
         if (obj != null)
-            return obj.GetComponent<DetachChildAndStore>().child;
+        {
+            DetachChildAndStore detachChildAndStore = obj.GetComponent<DetachChildAndStore>();
+            return detachChildAndStore == null ? null:detachChildAndStore.child;
+        }
         else
             return null;
     }
 
     public void PostSetAnchorUpdateOtherObjects(GameObject anchorObj)
     {
-        if(anchorObj!=null)
+        if (anchorObj != null)
         {
             foreach (GameObject otherObj in allObejcts)
             {
@@ -121,38 +132,44 @@ public class ObjAnchorManager : MonoBehaviour
         }
     }
 
-    public void SetAsAnchor(GameObject obj, bool doDetach=true)
+    public void SetAsAnchor(GameObject obj, bool doDetach = true)
     {
-        curAnchor = obj;
-        if(doDetach)
-            Detach(obj);
-        if (!anchorChildrenPairs.ContainsKey(obj))
+        if (obj != null)
         {
-            anchorChildrenPairs[obj] = new List<GameObject>();
+            curAnchor = obj;
+            if (doDetach)
+                Detach(obj);
+            if (!anchorChildrenPairs.ContainsKey(obj))
+            {
+                anchorChildrenPairs[obj] = new List<GameObject>();
+            }
+            GameObject menu = GetSubMenu(obj);
+            ChangeBtnText(GetBtn(menu, TOGGLE_OBJ_ANCHOR_NAME), DEACT_ANCHOR_TEXT);
+            RemoveObjectAnchorBtn(menu);
+            PostSetAnchorUpdateOtherObjects(obj);
         }
-        GameObject menu = GetSubMenu(obj);
-        ChangeBtnText(GetBtn(menu, TOGGLE_OBJ_ANCHOR_NAME), DEACT_ANCHOR_TEXT);
-        RemoveObjectAnchorBtn(menu);
-        PostSetAnchorUpdateOtherObjects(obj);
     }
 
     public void UnSetAnchor(GameObject obj)
     {
-        curAnchor = null;
-        if (anchorChildrenPairs.ContainsKey(obj))
+        if (obj != null)
         {
-            //anchorChildrenPairs.Remove(obj);
-            GameObject menu = GetSubMenu(obj);
-            ChangeBtnText(GetBtn(menu, TOGGLE_OBJ_ANCHOR_NAME), ACT_ANCHOR_TEXT);
-            foreach (GameObject otherObj in allObejcts)
+            curAnchor = null;
+            if (anchorChildrenPairs.ContainsKey(obj))
             {
-                GameObject otherObjMenu = GetSubMenu(otherObj);
-                ActivateButton(otherObjMenu, TOGGLE_OBJ_ANCHOR_NAME);
-                GameObject anchor_to_obj_btn = GetBtn(otherObjMenu, ANCHOR_TO_OBJ_NAME);
-                if (anchor_to_obj_btn!=null)
+                //anchorChildrenPairs.Remove(obj);
+                GameObject menu = GetSubMenu(obj);
+                ChangeBtnText(GetBtn(menu, TOGGLE_OBJ_ANCHOR_NAME), ACT_ANCHOR_TEXT);
+                foreach (GameObject otherObj in allObejcts)
                 {
-                    if(anchor_to_obj_btn.GetComponent<ButtonConfigHelper>().MainLabelText!=DETACH_TO_OBJ_TEXT)
-                        RemoveObjectAnchorBtn(otherObjMenu);
+                    GameObject otherObjMenu = GetSubMenu(otherObj);
+                    ActivateButton(otherObjMenu, TOGGLE_OBJ_ANCHOR_NAME);
+                    GameObject anchor_to_obj_btn = GetBtn(otherObjMenu, ANCHOR_TO_OBJ_NAME);
+                    if (anchor_to_obj_btn != null)
+                    {
+                        if (anchor_to_obj_btn.GetComponent<ButtonConfigHelper>().MainLabelText != DETACH_TO_OBJ_TEXT)
+                            RemoveObjectAnchorBtn(otherObjMenu);
+                    }
                 }
             }
         }
@@ -161,7 +178,7 @@ public class ObjAnchorManager : MonoBehaviour
 
     public void Attache(GameObject obj)
     {
-        if (curAnchor != null && anchorChildrenPairs.ContainsKey(curAnchor))
+        if (obj != null && curAnchor != null && anchorChildrenPairs.ContainsKey(curAnchor))
         {
             anchorChildrenPairs[curAnchor].Add(obj);
             obj.transform.parent = curAnchor.transform;
@@ -172,28 +189,31 @@ public class ObjAnchorManager : MonoBehaviour
         }
     }
 
-    public void Detach(GameObject obj, bool onDestroy=false)
+    public void Detach(GameObject obj, bool onDestroy = false)
     {
-        GameObject parent = null;
-        if (obj.transform.parent != null)
+        if (obj != null)
         {
-            parent = obj.transform.parent.gameObject;
-        }
-        if (parent != null && anchorChildrenPairs.ContainsKey(parent))
-        {
-            anchorChildrenPairs[parent].Remove(obj);
-            if(!onDestroy)
+            GameObject parent = null;
+            if (obj.transform.parent != null)
             {
-                obj.transform.parent = null;
-                GameObject menu = GetSubMenu(obj);
-                ChangeBtnText(GetBtn(menu, ANCHOR_TO_OBJ_NAME), ANCHOR_TO_OBJ_TEXT);
-                if(curAnchor==null)
-                    RemoveObjectAnchorBtn(menu);
+                parent = obj.transform.parent.gameObject;
             }
-            if (anchorChildrenPairs[parent].Count == 0)
+            if (parent != null && anchorChildrenPairs.ContainsKey(parent))
             {
-                GameObject menu = GetSubMenu(parent);
-                DeactivateButton(menu, UN_GROUP_BTN_NAME);
+                anchorChildrenPairs[parent].Remove(obj);
+                if (!onDestroy)
+                {
+                    obj.transform.parent = null;
+                    GameObject menu = GetSubMenu(obj);
+                    ChangeBtnText(GetBtn(menu, ANCHOR_TO_OBJ_NAME), ANCHOR_TO_OBJ_TEXT);
+                    if (curAnchor == null)
+                        RemoveObjectAnchorBtn(menu);
+                }
+                if (anchorChildrenPairs[parent].Count == 0)
+                {
+                    GameObject menu = GetSubMenu(parent);
+                    DeactivateButton(menu, UN_GROUP_BTN_NAME);
+                }
             }
         }
     }

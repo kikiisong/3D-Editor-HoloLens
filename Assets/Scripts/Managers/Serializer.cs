@@ -9,14 +9,14 @@ public class Serializer : MonoBehaviour
 {
     // Start is called before the first frame update
     public string type;
-    public string parentUuid="";
+    public string parentUuid = "";
     public string uuid = "";
     string path;
     bool modelTargetActivated = false;
     string imgPath;
     string title;
     string content;
-    ThreeDObject threeDObject=new ThreeDObject();
+    ThreeDObject threeDObject = new ThreeDObject();
     ImportedObject importedObject = new ImportedObject();
     TwoDObject twoDObject = new TwoDObject();
     TextObject textObject = new TextObject();
@@ -77,7 +77,7 @@ public class Serializer : MonoBehaviour
         {
             if (gameObject.transform.parent.Equals(Camera.main.transform))
             {
-                parent = "camera";
+                parent = "Camera";
             }
             else
             {
@@ -96,14 +96,14 @@ public class Serializer : MonoBehaviour
     public ThreeDObject SerializeToThreeDObject()
     {
         string parent = GetParentUuid();
-        this.threeDObject = new ThreeDObject(type: this.type, uuid: this.uuid, _transform: gameObject.transform, parentUuid: parent, isRoot:parent.Equals(""));
+        this.threeDObject = new ThreeDObject(type: this.type, uuid: this.uuid, _transform: gameObject.transform, parentUuid: parent, isRoot: parent.Equals(""));
         return this.threeDObject;
     }
 
     public ImportedObject SerializeToImportedObject()
     {
         string parent = GetParentUuid();
-        this.importedObject = new ImportedObject(path,uuid,gameObject.transform,type,parent,parent.Equals(""));
+        this.importedObject = new ImportedObject(path, uuid, gameObject.transform, type, parent, parent.Equals(""));
 
         return this.importedObject;
     }
@@ -190,7 +190,12 @@ public class Serializer : MonoBehaviour
     public void DeserializeImportedObjectStandAlone(ImportedObject importedObject)
     {
         path = importedObject.path;
-        DeserializeThreeDObjectStandAlone(importedObject);
+        this.importedObject = importedObject;
+        type = importedObject.type;
+        importedObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
+        //SetTransformParent(threeDObject.parentUuid, allGameObjects);
+        uuid = importedObject.uuid;
+        parentUuid = importedObject.parentUuid;
     }
 
     public void DeserializeModelTarget(bool active)
@@ -214,39 +219,39 @@ public class Serializer : MonoBehaviour
             }
             else
             {
-                foreach(GameObject obj in allGameObjects)
+                foreach (GameObject obj in allGameObjects)
                 {
                     Serializer serializer = obj.GetComponent<Serializer>();
-                    if (serializer != null&&serializer.uuid==parentUuid)
+                    if (serializer != null && serializer.uuid == parentUuid)
                     {
                         ObjectAnchor objAnchorParent = obj.GetComponent<ObjectAnchor>();
                         ObjectAnchor thisObjAnchor = gameObject.GetComponent<ObjectAnchor>();
-                        if(objAnchorParent!=null && thisObjAnchor != null)
+                        if (objAnchorParent != null && thisObjAnchor != null)
                         {
-                            objAnchorParent.objectAnchorManager.SetAsAnchor(obj,false);
+                            objAnchorParent.objectAnchorManager.SetAsAnchor(obj, false);
                             thisObjAnchor.objectAnchorManager.Attache(gameObject);
                             objAnchorParent.objectAnchorManager.UnSetAnchor(obj);
                             //threeDObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
-                            switch (gameObject.tag)
-                            {
-                                case PhaseSwitchManager.TEXT_OBJECT_TAG:
-                                    textObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
-                                    break;
-                                case PhaseSwitchManager.THREE_D_OBJECT_TAG:
-                                    threeDObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
-                                    break;
-                                case PhaseSwitchManager.TWO_D_OBJECT_TAG:
-                                    twoDObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
-                                    break;
-                                case PhaseSwitchManager.IMPORTED_OBJECT_TAG:
-                                    importedObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
-                                    break;
-                                case PhaseSwitchManager.MODEL_TARGET_TAG:
-                                    break;
-                            }
                         }
                     }
                 }
+            }
+            switch (gameObject.tag)
+            {
+                case PhaseSwitchManager.TEXT_OBJECT_TAG:
+                    textObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
+                    break;
+                case PhaseSwitchManager.THREE_D_OBJECT_TAG:
+                    threeDObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
+                    break;
+                case PhaseSwitchManager.TWO_D_OBJECT_TAG:
+                    twoDObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
+                    break;
+                case PhaseSwitchManager.IMPORTED_OBJECT_TAG:
+                    importedObject.serializedTransformPositionRotation.DeserializeTransform(gameObject);
+                    break;
+                case PhaseSwitchManager.MODEL_TARGET_TAG:
+                    break;
             }
         }
     }
