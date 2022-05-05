@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.764151, g: 0.73975646, b: 0.27874687, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 84290d2c01640cc43ba4527fee590249, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: a74e29bf5eba0834eab5e83a4a42083d, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -236,6 +236,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60c0517e692c6c142854e24c4f2712a6, type: 3}
+--- !u!1 &742829417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7636352527081481622, guid: 60c0517e692c6c142854e24c4f2712a6, type: 3}
+  m_PrefabInstance: {fileID: 742829416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &742829418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1061387880118192949, guid: 60c0517e692c6c142854e24c4f2712a6, type: 3}
+  m_PrefabInstance: {fileID: 742829416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742829417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &742829419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742829417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253298aa9f8caff45bb1723cd048ecf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 742829418}
+  nextScene: TraineeScene
+--- !u!114 &742829420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4309889194185346653, guid: 60c0517e692c6c142854e24c4f2712a6, type: 3}
+  m_PrefabInstance: {fileID: 742829416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965252658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &785655766
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,12 +384,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 965252658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf141018a875f54090cd667d3fe4058, type: 3}
+  m_Script: {fileID: 11500000, guid: 253298aa9f8caff45bb1723cd048ecf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMenu: {fileID: 2127430816}
-  btn: {fileID: 965252658}
-  replaceMenu: {fileID: 2137573296}
+  btn: {fileID: 742829420}
+  nextScene: EditorScene
 --- !u!1 &1337940618
 GameObject:
   m_ObjectHideFlags: 0

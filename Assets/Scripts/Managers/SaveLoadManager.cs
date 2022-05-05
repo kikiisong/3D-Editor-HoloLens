@@ -40,6 +40,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (isEditor)
         {
+            phaseSwitchManager.StoreAllObjects();
             PhaseSwitchManagerSerializable serialized = new PhaseSwitchManagerSerializable(phaseSwitchManager);
             string jsonSerialized = JsonUtility.ToJson(serialized);
 #if (!UNITY_EDITOR && ENABLE_WINMD_SUPPORT && UNITY_WSA)
@@ -90,6 +91,7 @@ public class SaveLoadManager : MonoBehaviour
                 if(file!=null){
                     string json = await FileIO.ReadTextAsync(file);
                     PhaseSwitchManagerSerializable serialized = JsonUtility.FromJson<PhaseSwitchManagerSerializable>(json);
+                    phaseSwitchManager.isEditor = isEditor;
                     serialized.Deserialize(phaseSwitchManager);
                     messageTextPanel.text = "Message: "+"Loaded!";
                 }else
@@ -104,6 +106,7 @@ public class SaveLoadManager : MonoBehaviour
         string path = EditorUtility.OpenFilePanel("Select the saved scene.", "", "json");
         string json = File.ReadAllText(path);
         PhaseSwitchManagerSerializable serialized = JsonUtility.FromJson<PhaseSwitchManagerSerializable>(json);
+        phaseSwitchManager.isEditor = isEditor;
         serialized.Deserialize(phaseSwitchManager);
         messageTextPanel.text = "Message: "+"Loaded!";
 #endif

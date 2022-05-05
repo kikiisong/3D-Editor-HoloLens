@@ -7,20 +7,21 @@ using UnityEngine;
 public class PhaseSwitchManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    List<SerializedHolder> phases = new List<SerializedHolder>();
+    public bool isEditor = true;
     public GameObject cubePrefab;
     public GameObject arrowPrefab;
     public GameObject spherePrefab;
     public GameObject textPanelPrefab;
     public GameObject imgPanelPrefab;
     public GameObject logoPrefab;
-    public bool isEditor = true;
+    public TextMeshPro phaseNameText;
+    public GameObject modelTarget;
+
     int curPhase = 0;
 
-    public TextMeshPro phaseNameText;
     ThreeDModelImporter importer;
     List<GameObject> all;
-    public GameObject modelTarget;
+    List<SerializedHolder> phases = new List<SerializedHolder>();
 
     public const string THREE_D_OBJECT_TAG = "ThreeDObject"; // Note logo is considered as ThreeDObject
     public const string IMPORTED_OBJECT_TAG = "ImportedObject";
@@ -55,6 +56,7 @@ public class PhaseSwitchManager : MonoBehaviour
         all = new List<GameObject>();
         phases.Add(new SerializedHolder());
         importer = gameObject.GetComponent<ThreeDModelImporter>();
+        importer.isEditor = isEditor;
         importer.AddCustomOnImportedScript(OnLoaded);
         importer.AddCustomScriptOnImportCompleted(OnImportCompleted);
     }
@@ -93,7 +95,7 @@ public class PhaseSwitchManager : MonoBehaviour
             StoreAllObjects();
         RemoveAllObjects();
         curPhase += 1;
-        if (phases.Count <= curPhase)
+        if (phases.Count <= curPhase && isEditor)
         {
             phases.Add(new SerializedHolder());
         }
@@ -235,7 +237,7 @@ public class PhaseSwitchManager : MonoBehaviour
                 continue;
             }
             GameObject uuidNamedObj = null;
-            uuidNamedObj = obj.transform.GetChild(1).gameObject;
+            uuidNamedObj = obj.transform.GetChild(obj.transform.childCount-1).gameObject;
             string uuid = uuidNamedObj.name.Substring(0, 36);
             int phase = int.Parse(uuidNamedObj.name.Substring(36));
             foreach (ImportedObject importedObject in phases[phase].importedObjects)
@@ -263,7 +265,7 @@ public class PhaseSwitchManager : MonoBehaviour
         }
     }
 
-    void StoreAllObjects()
+    public void StoreAllObjects()
     {
         StoreModelTarget();
         modelTarget.transform.parent.gameObject.SetActive(true);

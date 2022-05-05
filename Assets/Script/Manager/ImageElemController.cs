@@ -34,7 +34,7 @@ public class ImageElemController : MonoBehaviour
     {
    
 #if UNITY_EDITOR
-        string path = EditorUtility.OpenFilePanel("Overwrite with jpg", "", "jpg");
+        string path = EditorUtility.OpenFilePanel("Overwrite with image", "", "jpg,jpeg,png");
         if (path.Length != 0)
         {
             var fileContent = File.ReadAllBytes(path);
