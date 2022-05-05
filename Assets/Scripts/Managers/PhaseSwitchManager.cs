@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,9 +14,10 @@ public class PhaseSwitchManager : MonoBehaviour
     public GameObject textPanelPrefab;
     public GameObject imgPanelPrefab;
     public GameObject logoPrefab;
+    public bool isEditor = true;
+    int curPhase = 0;
 
     public TextMeshPro phaseNameText;
-    int curPhase = 0;
     ThreeDModelImporter importer;
     List<GameObject> all;
     public GameObject modelTarget;
@@ -25,6 +27,28 @@ public class PhaseSwitchManager : MonoBehaviour
     public const string MODEL_TARGET_TAG = "ModelTarget";
     public const string TEXT_OBJECT_TAG = "TextPanel";
     public const string TWO_D_OBJECT_TAG = "ImagePanel";
+
+    public void JumpToPhase(int phasNum)
+    {
+        if(phasNum<phases.Count)
+        {
+            curPhase = phasNum;
+            RemoveAllObjects();
+            LoadAllObjects();
+            updatePhaseNameText();
+        }
+    }
+
+    public int CurPhase
+    {
+        get { return curPhase; }
+    }
+
+    public List<SerializedHolder> Phases
+    {
+        get { return phases; }
+        set { phases.Clear(); phases.AddRange(value); }
+    }
 
     private void Awake()
     {
@@ -53,7 +77,8 @@ public class PhaseSwitchManager : MonoBehaviour
     {
         if (curPhase > 0)
         {
-            StoreAllObjects();
+            if(isEditor)
+                StoreAllObjects();
             RemoveAllObjects();
             curPhase -= 1;
             LoadAllObjects();
@@ -64,7 +89,8 @@ public class PhaseSwitchManager : MonoBehaviour
     public void NextPhase()
     {
         Debug.Log("NextPhase called");
-        StoreAllObjects();
+        if(isEditor)
+            StoreAllObjects();
         RemoveAllObjects();
         curPhase += 1;
         if (phases.Count <= curPhase)
@@ -350,8 +376,12 @@ public class PhaseSwitchManager : MonoBehaviour
         ObjectAnchor anchor = modelTarget.GetComponent<ObjectAnchor>();
         if (anchor != null)
         {
-            anchor.objectAnchorManager.UnGroup(modelTarget);
-            anchor.objectAnchorManager.UnSetAnchor(modelTarget);
+            ObjAnchorManager manager = anchor.objectAnchorManager;
+            if (manager != null)
+            {
+                anchor.objectAnchorManager.UnGroup(modelTarget);
+                anchor.objectAnchorManager.UnSetAnchor(modelTarget);
+            }
         }
     }
 
@@ -365,5 +395,40 @@ public class PhaseSwitchManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+}
+
+[Serializable]
+class PhaseSwitchManagerSerializable
+{
+    public List<SerializedHolder> phases = new List<SerializedHolder>();
+    public int curPhase = 0;
+    public PhaseSwitchManagerSerializable()
+    {
+    }
+
+    public PhaseSwitchManagerSerializable(PhaseSwitchManager manager)
+    {
+        Serialize(manager);
+    }
+
+    public List<SerializedHolder> Phases
+    {
+        get { return phases; }
+        set { phases.Clear(); phases.AddRange(value); }
+    }
+
+    public PhaseSwitchManagerSerializable Serialize(PhaseSwitchManager manager)
+    {
+        this.phases.Clear();
+        this.phases.AddRange(manager.Phases);
+        this.curPhase = manager.CurPhase;
+        return this;
+    }
+
+    public void Deserialize(PhaseSwitchManager manager)
+    {
+        manager.Phases = this.phases;
+        manager.JumpToPhase(this.curPhase);
     }
 }
