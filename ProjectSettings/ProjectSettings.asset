@@ -160,6 +160,29 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1179267970709266037, guid: 2c5146f1999dfe4429feb411832f908a, type: 2}
   - {fileID: -6617474711093017461, guid: dbc3de649136db745ad3bc3c92500e5d, type: 2}
   metroInputSource: 0
@@ -178,7 +201,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.3DEditor
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -661,10 +685,12 @@ PlayerSettings:
       Microphone: True
       GazeInput: True
       SpatialPerception: True
+      PicturesLibrary: True
       InternetClient: True
       WebCam: True
       Objects3D: True
-  metroTargetDeviceFamilies: {}
+  metroTargetDeviceFamilies:
+    Holographic: True
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 

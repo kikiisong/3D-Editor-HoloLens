@@ -7,9 +7,19 @@ public class ObjectAnchor : MonoBehaviour
 {
     // Start is called before the first frame update
     public ObjAnchorManager objectAnchorManager=null;
+
+    public ObjAnchorManager GetObjectAnchorManager()
+    {
+        if (objectAnchorManager == null)
+        {
+            objectAnchorManager = GameObject.Find("ObjectAnchorController").GetComponent<ObjAnchorManager>();
+        }
+        return objectAnchorManager;
+    }
     private void Awake()
     {
-        objectAnchorManager = GameObject.Find("ObjectAnchorController").GetComponent<ObjAnchorManager>();
+        if(objectAnchorManager==null)
+            objectAnchorManager = GameObject.Find("ObjectAnchorController").GetComponent<ObjAnchorManager>();
         objectAnchorManager.AddToAllObjects(gameObject);
         GameObject menu = objectAnchorManager.GetSubMenu(gameObject);
         GameObject toggleAnchorBtn = objectAnchorManager.GetBtn(menu, objectAnchorManager.TOGGLE_OBJ_ANCHOR_NAME);

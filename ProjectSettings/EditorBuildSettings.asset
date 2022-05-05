@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SaveTest.unity
     guid: da3de2b9f625e93438e7c7c99454dc3a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EditorSceneMerging.unity
     guid: 974e3af862b040148bcd67216639b45f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Load.unity
     guid: 1afcc42f0f6a88f4e89ed034e4c50513
   m_configObjects:

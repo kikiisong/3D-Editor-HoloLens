@@ -101,6 +101,8 @@ public class ThreeDModelImporter : MonoBehaviour
     async void ObjOpernerAsync()
     {
 #if (!UNITY_EDITOR && ENABLE_WINMD_SUPPORT && UNITY_WSA)
+        // Code borrowed from:
+        // https://stackoverflow.com/questions/66281959/system-exception-getting-called-when-assessing-openfilepicker-on-hololens/66282480#66282480
         Debug.Log("***********************************");
         Debug.Log("File Picker start.");
         Debug.Log("***********************************");

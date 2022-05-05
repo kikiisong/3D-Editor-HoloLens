@@ -9,6 +9,19 @@ public class DetachChildAndStore : MonoBehaviour
     private void Awake()
     {
         child.transform.parent = null;
+        MeshRenderer[] render = child.GetComponentsInChildren<MeshRenderer>(includeInactive: true);
+        Collider[] collider = child.GetComponentsInChildren<Collider>(includeInactive: true);
+        var canvasComponents = child.GetComponentsInChildren<Canvas>(true);
+        foreach (var v in render)
+        {
+            v.enabled = true;
+        }
+        foreach (var v in collider)
+        {
+            v.enabled = true;
+        }
+        foreach (var component in canvasComponents)
+            component.enabled = true;
     }
     void Start()
     {
