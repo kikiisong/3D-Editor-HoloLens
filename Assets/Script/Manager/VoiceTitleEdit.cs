@@ -64,7 +64,10 @@ public class VoiceTitleEdit : MonoBehaviour
         dictationRecognizer_title = new DictationRecognizer();
         dictationRecognizer_title.DictationHypothesis += DictationRecognizer_OnDictationHypothesis_title;
         dictationRecognizer_title.DictationResult += DictationRecognizer_OnDictationResult_title;
-        
+
+        textTitle.text = "";
+        currentTitle = "";
+
         dictationRecognizer_title.Start();
 
     }
@@ -92,6 +95,9 @@ public class VoiceTitleEdit : MonoBehaviour
         dictationRecognizer_content = new DictationRecognizer();
         dictationRecognizer_content.DictationHypothesis += DictationRecognizer_OnDictationHypothesis_content;
         dictationRecognizer_content.DictationResult += DictationRecognizer_OnDictationResult_content;
+
+        textContent.text = "";
+        currentContent = "";
 
         dictationRecognizer_content.Start();
     }
