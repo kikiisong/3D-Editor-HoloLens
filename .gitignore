@@ -78,3 +78,11 @@ crashlytics-build.properties
 
 /Packages/com.ptc.vuforia.engine-10.6.3.tgz
 Assets/Resources/data.json
+Assets/Editor.meta
+Assets/Editor/Migration.meta
+Assets/Editor/Migration/AddVuforiaEnginePackage.cs.meta
+Assets/Editor/Migration/com.ptc.vuforia.engine-10.6.3.tgz
+Assets/Editor/Migration/com.ptc.vuforia.engine-10.6.3.tgz.meta
+Assets/Resources/VuforiaConfiguration.asset
+ProjectSettings/ProjectSettings.asset
+QCAR/somedata16
