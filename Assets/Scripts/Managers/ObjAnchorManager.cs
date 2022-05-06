@@ -152,7 +152,7 @@ public class ObjAnchorManager : MonoBehaviour
 
     public void UnSetAnchor(GameObject obj)
     {
-        if (obj != null)
+        if (obj != null&&obj.Equals(curAnchor))
         {
             curAnchor = null;
             if (anchorChildrenPairs.ContainsKey(obj))
