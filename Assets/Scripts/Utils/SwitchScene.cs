@@ -11,7 +11,8 @@ public class SwitchScene : MonoBehaviour
     public string nextScene;
     void Start()
     {
-        btn.OnClick.AddListener(Switch);
+        if(btn)
+            btn.OnClick.AddListener(Switch);
     }
 
     // Update is called once per frame
@@ -23,5 +24,10 @@ public class SwitchScene : MonoBehaviour
     void Switch()
     {
         SceneManager.LoadScene(nextScene);
+    }
+
+    public void SwitchTo(string toScene)
+    {
+        SceneManager.LoadScene(toScene);
     }
 }
