@@ -20,6 +20,7 @@ public class ImageElemController : MonoBehaviour
     private PhotoCapture photoCaptureObject = null;
     public ButtonConfigHelper capButton;
     private CameraParameters c;
+    private string capturedPath;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +69,7 @@ public class ImageElemController : MonoBehaviour
     {        
         photoCaptureObject.Dispose();
         photoCaptureObject = null;
+        capturedPath = "";
         capButton.MainLabelText = "Open Camera";
         capButton.OnClick.AddListener(CamOpened);
     }
@@ -76,7 +78,11 @@ public class ImageElemController : MonoBehaviour
     {
         if (result.success)
         {
-            photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
+            string filename = string.Format(@"CapturedImage{0}_n.jpg", Time.time);
+            string filePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+            capturedPath = filePath;
+            photoCaptureObject.TakePhotoAsync(filePath, PhotoCaptureFileOutputFormat.JPG, OnCapturedPhotoToDisk);           
+            //photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
         }
         else
         {
@@ -84,21 +90,43 @@ public class ImageElemController : MonoBehaviour
         }
     }
 
+    void OnCapturedPhotoToDisk(PhotoCapture.PhotoCaptureResult result)
+    {
+        if (result.success)
+        {
+            var fileContent = File.ReadAllBytes(capturedPath);
+            var tex = new Texture2D(2, 2);
+            tex.LoadImage(fileContent);
+
+            // Do as we wish with the texture such as apply it to a material, etc.
+            GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
+            MeshRenderer imgRenderer = (MeshRenderer)(imgPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
+            imgRenderer.material.mainTexture = tex;
+            ImportedImg imagePath = (ImportedImg)(imgPanel.GetComponent("ImportedImg"));
+            imagePath.m_imagePath = capturedPath;
+
+            photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
+        }
+        else
+        {
+            Debug.Log("Failed to save Photo to disk");
+        }
+    }
+
     void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
     {
         if (result.success)
         {
-            // Create our Texture2D for use and set the correct resolution
-            Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
-            Texture2D targetTexture = new Texture2D(cameraResolution.width, cameraResolution.height);
-            // Copy the raw image data into our target texture
-            photoCaptureFrame.UploadImageDataToTexture(targetTexture);
-            Debug.Log(targetTexture);
-            
+            var fileContent = File.ReadAllBytes(capturedPath);
+            var tex = new Texture2D(2, 2);
+            tex.LoadImage(fileContent);
+
             // Do as we wish with the texture such as apply it to a material, etc.
             GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
             MeshRenderer imgRenderer = (MeshRenderer)(imgPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
-            imgRenderer.material.mainTexture = targetTexture;
+            imgRenderer.material.mainTexture = tex;
+            ImportedImg imagePath = (ImportedImg)(imgPanel.GetComponent("ImportedImg"));
+            imagePath.m_imagePath = capturedPath;
         }
         // Clean up
         photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
