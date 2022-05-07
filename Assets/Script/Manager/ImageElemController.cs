@@ -60,7 +60,6 @@ public class ImageElemController : MonoBehaviour
         if(photoCaptureObject != null)
         {
             photoCaptureObject.StartPhotoModeAsync(c, OnPhotoModeStarted);
-            capButton.MainLabelText = "Capturing";
         }
         
     }
@@ -70,7 +69,7 @@ public class ImageElemController : MonoBehaviour
         photoCaptureObject.Dispose();
         photoCaptureObject = null;
         capButton.MainLabelText = "Open Camera";
-
+        capButton.OnClick.AddListener(CamOpened);
     }
 
     private void OnPhotoModeStarted(PhotoCapture.PhotoCaptureResult result)
