@@ -925,6 +925,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2138266144255848537, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1535838420}
+    - target: {fileID: 2138266144255848537, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PreviousPhase
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138266144255848537, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PhaseSwitchManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138266144255848537, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2286654025531426396, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -936,6 +952,22 @@ PrefabInstance:
     - target: {fileID: 3995317826042518783, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Name
       value: ElementMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523446450149246422, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1535838420}
+    - target: {fileID: 5523446450149246422, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextPhase
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523446450149246422, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PhaseSwitchManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523446450149246422, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5888835984093592218, guid: 3558901c2cd0b4a4fb5681ecc81bd656, type: 3}
       propertyPath: m_Mesh

@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Windows.Speech;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -94,6 +95,7 @@ public class SaveLoadManager : MonoBehaviour
                     phaseSwitchManager.isEditor = isEditor;
                     serialized.Deserialize(phaseSwitchManager);
                     messageTextPanel.text = "Message: "+"Loaded!";
+                    PhraseRecognitionSystem.Restart();
                 }else
                 {
                     messageTextPanel.text = "Message: "+"Load Failed!";
@@ -109,6 +111,7 @@ public class SaveLoadManager : MonoBehaviour
         phaseSwitchManager.isEditor = isEditor;
         serialized.Deserialize(phaseSwitchManager);
         messageTextPanel.text = "Message: "+"Loaded!";
+        PhraseRecognitionSystem.Restart();
 #endif
 
     }
