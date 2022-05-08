@@ -19,6 +19,6 @@ public class TextElemController : MonoBehaviour
 
     public void createText()
     {
-        Instantiate(textPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
+        Instantiate(textPrefab, new Vector3(Camera.main.transform.position.x-0.2f, Camera.main.transform.position.y, 0.6f), Quaternion.identity);
     }
 }

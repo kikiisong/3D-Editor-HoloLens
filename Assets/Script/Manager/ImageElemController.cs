@@ -147,7 +147,8 @@ public class ImageElemController : MonoBehaviour
             var tex = new Texture2D(2, 2);
             tex.LoadImage(fileContent);
 
-            GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 1), Quaternion.identity);
+            GameObject imgPanel = Instantiate(imgPrefab, new Vector3(Camera.main.transform.position.x-0.2f, Camera.main.transform.position.y, 0.6f), Quaternion.identity);
+            imgPanel.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             MeshRenderer imgRenderer = (MeshRenderer)(imgPanel.transform.GetChild(1).gameObject.GetComponent("MeshRenderer"));
             imgRenderer.material.mainTexture=tex;
 
