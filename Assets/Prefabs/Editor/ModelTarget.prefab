@@ -471,6 +471,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3DObjSubMenuModelTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 4896106575484573933, guid: 3db9102e9a2fb964e8589aae3526b6f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3db9102e9a2fb964e8589aae3526b6f6, type: 3}
 --- !u!1 &1836110226591599177 stripped

@@ -1,0 +1,117 @@
+{
+  "phases": [
+    {
+      "threeDObjects": [
+        {
+          "type": "Arrow",
+          "uuid": "02e4820a-36a3-4550-a643-dde4c6a4b37d",
+          "parentUuid": "320d1689-ae8b-4828-870d-c6da477ceaed",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              0.10480326414108277,
+              0.21595191955566407,
+              0.2535149157047272
+            ],
+            "_rotation": [
+              0.23545368015766145,
+              0.1365121603012085,
+              -0.7766434550285339,
+              -0.568111777305603
+            ],
+            "_scale": [
+              0.20000001788139344,
+              0.19999998807907105,
+              0.20000001788139344
+            ],
+            "worldSpace": false
+          }
+        }
+      ],
+      "importedObjects": [
+        {
+          "type": "ImportedObject",
+          "uuid": "320d1689-ae8b-4828-870d-c6da477ceaed",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.4150235056877136,
+              -0.23111405968666078,
+              0.5283679366111755
+            ],
+            "_rotation": [
+              -0.22932253777980805,
+              -0.9482983946800232,
+              0.137649804353714,
+              -0.1708621233701706
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "path": "U:\\Users\\hopki\\3D Objects\\VentricleBB_compressed_more.obj"
+        }
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "8db80c15-0540-4100-83ab-0858c9a41629",
+          "parentUuid": "320d1689-ae8b-4828-870d-c6da477ceaed",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              0.0841192901134491,
+              0.22523346543312074,
+              -0.02241542562842369
+            ],
+            "_rotation": [
+              0.11966630071401596,
+              0.9235882759094238,
+              -0.23177345097064973,
+              0.2809728980064392
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": " insertion.",
+          "m_Content": " look at the image."
+        }
+      ],
+      "twoDObjects": [
+        {
+          "type": "TwoDObject",
+          "uuid": "28fe07b9-af3f-4c08-8529-71c7392813a3",
+          "parentUuid": "320d1689-ae8b-4828-870d-c6da477ceaed",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              0.4035741090774536,
+              0.2779540419578552,
+              0.005590170621871948
+            ],
+            "_rotation": [
+              0.11610560864210129,
+              0.8864161372184753,
+              -0.2409476935863495,
+              0.377796471118927
+            ],
+            "_scale": [
+              0.4000000059604645,
+              0.4000000059604645,
+              0.40000006556510928
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Image Title",
+          "m_ImgPath": "U:\\USERS\\hopki\\Pictures\\AR_Group_6\\EVD\\20220506_175120_HoloLens.jpg"
+        }
+      ],
+      "modelTargetActivated": false
+    }
+  ],
+  "curPhase": 0
+}
