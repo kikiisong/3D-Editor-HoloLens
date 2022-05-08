@@ -1,1 +1,574 @@
-{"phases":[{"threeDObjects":[],"importedObjects":[],"textObjects":[{"type":"Text","uuid":"61a2f719-e846-47d7-9001-257e86bc29d6","parentUuid":"","serializedTransformPositionRotation":{"_position":[-0.20000000298023225,0.008290967904031277,0.4000000059604645],"_rotation":[0.0,0.0,0.0,1.0],"_scale":[1.0,1.0,1.0],"worldSpace":false},"m_Title":"Welcome to the editor tutorial!","m_Content":"We are going to create a part of the \"Place an External Ventricular Drain\" training. Now, say \"Next Phase\" to start the tutorial. The current phase is displayed on top of the main menu panel."}],"twoDObjects":[],"modelTargetActivated":false},{"threeDObjects":[],"importedObjects":[],"textObjects":[{"type":"Text","uuid":"8b7111f2-becb-420b-bee2-7ca33473b4ad","parentUuid":"","serializedTransformPositionRotation":{"_position":[-0.20000000298023225,0.0,0.5],"_rotation":[0.0,0.0,0.0,1.0],"_scale":[1.0,1.0,1.0],"worldSpace":false},"m_Title":"Add a text panel","m_Content":"1. Click \"Text\" on the main menu, then click \"Add\" in the popped up submenu.\n2. Click \"Edit Title\", say something (e.g. \"step one\"), and click \"Stop Editing Title\".\n3. Check if the title is correct. If not, repeat step 2.\n4. Try editing the content! (e.g. \"elevate the bed\")\n"}],"twoDObjects":[],"modelTargetActivated":false},{"threeDObjects":[],"importedObjects":[],"textObjects":[{"type":"Text","uuid":"b17cc44a-ee53-4e41-b782-a580757173d0","parentUuid":"","serializedTransformPositionRotation":{"_position":[-0.20000000298023225,0.0,0.5],"_rotation":[0.0,0.0,0.0,1.0],"_scale":[1.0,1.0,1.0],"worldSpace":false},"m_Title":"Upload a picture","m_Content":"1. Click \"2D\", then click \"Upload\".\n2. Pick a picture in the pop-up window, e.g. \"Prep\"\n3. An image panel will appear. Use your hand to move it.\n4. Try edit the title using your voice!"}],"twoDObjects":[],"modelTargetActivated":false},{"threeDObjects":[],"importedObjects":[],"textObjects":[{"type":"Text","uuid":"b662ae31-9745-48bc-be6f-8be7074df046","parentUuid":"","serializedTransformPositionRotation":{"_position":[-0.30000001192092898,0.0,0.5],"_rotation":[0.0,0.0,0.0,1.0],"_scale":[1.0,1.0,1.0],"worldSpace":false},"m_Title":"Anchor to Display","m_Content":"1. Add a Cube from 3D submenu.\n2. Click the gear icon next to the cube. A menu will be opened up.\n3. Click \"Anchor to Display\". Now the cube will move with your head.\n4. Click \"Anchor to Display\" again. Now the cube is no longer anchored."}],"twoDObjects":[],"modelTargetActivated":false},{"threeDObjects":[],"importedObjects":[],"textObjects":[{"type":"Text","uuid":"d78dde98-2654-4ee5-ae2f-ac83bf9e60f3","parentUuid":"","serializedTransformPositionRotation":{"_position":[-0.30000001192092898,0.0,0.5],"_rotation":[0.0,0.0,0.0,1.0],"_scale":[1.0,1.0,1.0],"worldSpace":false},"m_Title":"Anchor to Object","m_Content":"1. Add a Cube. Open its submenu.\n2. Click \"Set as anchor\". Now this is the object anchor.\n3. Add an Arrow from the 3D menu. You mind need to move the cube to see the arrow.\n4. Move the arrow so it's pointing to the cube. \n5. Open the arrow's submenu. Click \"Anchor to the Object\". Now the arrow will follow the cube.\n6. Look away. You'll see a small error pointing back towards the cube."}],"twoDObjects":[],"modelTargetActivated":false},{"threeDObjects":[],"importedObjects":[],"textObjects":[{"type":"Text","uuid":"da74cb70-9b4f-4248-a0ca-a56f1e274e19","parentUuid":"","serializedTransformPositionRotation":{"_position":[-0.30000001192092898,-0.014460536651313305,0.5],"_rotation":[0.0,0.0,0.0,1.0],"_scale":[1.0,1.0,1.0],"worldSpace":false},"m_Title":"Tracking","m_Content":"1. Make sure that the full real skull model is in your view.\n2. Click \"Track\" -> \"Skull\" -> \"Toggle Model Track\". Look at the skull until you see an overlay.\n3. Move around but keep looking at the model. "}],"twoDObjects":[],"modelTargetActivated":false},{"threeDObjects":[],"importedObjects":[],"textObjects":[{"type":"Text","uuid":"6dd11c7e-a109-4f36-82c5-b1ddbd3f6740","parentUuid":"","serializedTransformPositionRotation":{"_position":[-0.30000001192092898,0.0,0.5],"_rotation":[0.0,0.0,0.0,1.0],"_scale":[1.0,1.0,1.0],"worldSpace":false},"m_Title":"Save And Load","m_Content":"1. When you are satisfied with what you've built (Congratulations!!)\n2. Click \"Save\" and name your file.\n3. Click \"ToMenu\". Re-enter \"Editor Mode\" or try the \"Trainee Mode\". Click \"Load\" and pick the file you just saved."}],"twoDObjects":[],"modelTargetActivated":false}],"curPhase":6}
+{
+  "phases": [
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "61a2f719-e846-47d7-9001-257e86bc29d6",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.20000000298023225,
+              0.008290967904031277,
+              0.4000000059604645
+            ],
+            "_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Welcome to the editor tutorial!",
+          "m_Content": "We are going to create a part of the \"Place an External Ventricular Drain\" training. Now, say \"Next Phase\" to start the tutorial. The current phase is displayed on top of the main menu panel."
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "8b7111f2-becb-420b-bee2-7ca33473b4ad",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.20000000298023225,
+              0.0,
+              0.5
+            ],
+            "_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Add a text panel",
+          "m_Content": "1. Click \"Text\" on the main menu, then click \"Add\" in the popped up submenu.\n2. Click \"Edit Title\", say something (e.g. \"step one\"), and click \"Stop Editing Title\".\n3. Check if the title is correct. If not, repeat step 2.\n4. Try editing the content! (e.g. \"elevate the bed\")\n"
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "b17cc44a-ee53-4e41-b782-a580757173d0",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.20000000298023225,
+              0.0,
+              0.5
+            ],
+            "_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Upload a picture",
+          "m_Content": "1. Click \"2D\", then click \"Upload\".\n2. Pick a picture in the pop-up window, e.g. \"Prep\"\n3. An image panel will appear. Use your hand to move it.\n4. Try edit the title using your voice!"
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "b662ae31-9745-48bc-be6f-8be7074df046",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.30000001192092898,
+              0.0,
+              0.5
+            ],
+            "_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Anchor to Display",
+          "m_Content": "1. Add a Cube from 3D submenu.\n2. Click the gear icon next to the cube. A menu will be opened up.\n3. Click \"Anchor to Display\". Now the cube will move with your head.\n4. Click \"Anchor to Display\" again. Now the cube is no longer anchored."
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "d78dde98-2654-4ee5-ae2f-ac83bf9e60f3",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.30000001192092898,
+              0.0,
+              0.5
+            ],
+            "_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Anchor to Object",
+          "m_Content": "1. Add a Cube. Open its submenu.\n2. Click \"Set as anchor\". Now this is the object anchor.\n3. Add an Arrow from the 3D menu. You might need to move the cube to see the arrow.\n4. Move the arrow so it's pointing to the cube. \n5. Open the arrow's submenu. Click \"Anchor to the Object\". Now the arrow will follow the cube.\n6. Look away. You'll see a small error pointing back towards the cube."
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "da74cb70-9b4f-4248-a0ca-a56f1e274e19",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.30000001192092898,
+              -0.014460536651313305,
+              0.5
+            ],
+            "_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Tracking",
+          "m_Content": "1. Make sure that the full real skull model is in your view.\n2. Click \"Track\" -> \"Skull\" -> \"Toggle Model Track\". Look at the skull until you see an overlay.\n3. Move around but keep looking at the model. "
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "708fbf1a-4343-413c-94ae-facb14dc1e23",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.2854456901550293,
+              0.05357525497674942,
+              0.26237672567367556
+            ],
+            "_rotation": [
+              0.03915971517562866,
+              -0.3084695637226105,
+              0.002426294144243002,
+              0.9504247307777405
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Tracking introduction part 1.",
+          "m_Content": "1. To enable tracking, press button Track>Skull>Toggle Model Track.\n2. After you pressed the button, stare at the front face of the skull. After several seconds, the skull should be covered with a white virtual skull, which means tracking has started.\n3. After seeing the white skull, you may go to the next phase."
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+        {
+          "type": "Arrow",
+          "uuid": "1112eb1c-7e9d-4b4f-b81c-cfba95f22054",
+          "parentUuid": "ModelTarget",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -195.7218475341797,
+              101.0085220336914,
+              178.54823303222657
+            ],
+            "_rotation": [
+              0.47361329197883608,
+              0.3566111624240875,
+              0.32946932315826418,
+              -0.7348257303237915
+            ],
+            "_scale": [
+              199.99996948242188,
+              199.99996948242188,
+              199.99998474121095
+            ],
+            "worldSpace": false
+          }
+        }
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "b60f120a-47e1-4177-82ee-06bb9d57e6b6",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.2852797508239746,
+              -0.007846466265618801,
+              0.28487202525138857
+            ],
+            "_rotation": [
+              0.02441108226776123,
+              -0.2852455973625183,
+              0.02884269692003727,
+              0.9577093720436096
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Tracking introduction part 2.",
+          "m_Content": "1. Now, an arrow is anchored to the skull to guide you to it.\n 2. Look for a small arrow in front of you, it will lead you to the skull. \n3. An example of the small arrow is shown in the image.\n 4. After you found the skull and the arrow, first resume tracking by staring at the skull. Then, you can move the skull slightly. You will find the arrow is moving with the skull. It is because the arrow is anchored to the skull. \n 5. Proceed to the next phase to learn how it works."
+        }
+      ],
+      "twoDObjects": [
+        {
+          "type": "TwoDObject",
+          "uuid": "f0909fa2-842a-4cd6-a466-a58725488961",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              0.3558245003223419,
+              -0.009159725159406662,
+              0.21307560801506043
+            ],
+            "_rotation": [
+              0.0,
+              0.38078683614730837,
+              0.0,
+              0.9246628880500794
+            ],
+            "_scale": [
+              0.38255351781845095,
+              0.38255351781845095,
+              0.38255351781845095
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Where is the arrow? Circled with red!",
+          "m_ImgPath": "U:\\USERS\\hopki\\Pictures\\Camera Roll\\20220506_175120_HoloLens.jpg"
+        }
+      ],
+      "modelTargetActivated": true
+    },
+    {
+      "threeDObjects": [
+        {
+          "type": "Arrow",
+          "uuid": "0d6781d6-0773-44fd-865c-2ba0b62c2c51",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              0.4000000059604645,
+              0.0,
+              0.20000000298023225
+            ],
+            "_rotation": [
+              0.0,
+              0.033296357840299609,
+              0.033296357840299609,
+              0.9988906979560852
+            ],
+            "_scale": [
+              0.20000000298023225,
+              0.20000000298023225,
+              0.20000000298023225
+            ],
+            "worldSpace": false
+          }
+        }
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "2d1b7e1c-4474-40a2-b291-1f8a4ad252fe",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.2725953161716461,
+              0.00042211025720462203,
+              0.29421719908714297
+            ],
+            "_rotation": [
+              0.028508026152849199,
+              -0.32907813787460329,
+              -0.005225006956607103,
+              0.9438578486442566
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Tracking introduction part 3.",
+          "m_Content": "1. An arrow has been pre-added to the scene. \n 2. Move it around the skull with your hand, and then start tracking the skull by staring at it. \n 3. Press the gear icon around the skull. You should see a menu. Press Set as the anchor button in the menu. Next, Press the gear icon around the arrow, you should see another menu, press achor to the object button. \n 4. Now the arrow is anchored to the skull."
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": true
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+        {
+          "type": "ImportedObject",
+          "uuid": "fe3b142d-fd86-4723-9242-2ff3c08af846",
+          "parentUuid": "ModelTarget",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -90.56175231933594,
+              -133.13880920410157,
+              56.46613311767578
+            ],
+            "_rotation": [
+              -0.132760688662529,
+              0.6692793965339661,
+              0.7307103276252747,
+              -0.022407284006476404
+            ],
+            "_scale": [
+              999.999755859375,
+              999.999755859375,
+              999.9996948242188
+            ],
+            "worldSpace": false
+          },
+          "path": "U:\\Users\\hopki\\3D Objects\\VentricleBB_compressed_more.obj"
+        }
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "299372a2-998a-4a7a-808d-5a39000c04cb",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.27348992228507998,
+              0.0007487332331947982,
+              0.2664637267589569
+            ],
+            "_rotation": [
+              0.0004932461306452751,
+              -0.2999905049800873,
+              0.020768335089087487,
+              0.953715980052948
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Tracking introduction part 4.",
+          "m_Content": "1. Wait till you see a virtual skull, it takes some time to import. \n2. An imported virtual skull is anchored and attached to the skull, a text panel is anchored to the imported virtual skull.\n 3. You can detach those elements by opening the menu and pressing the detach button."
+        },
+        {
+          "type": "Text",
+          "uuid": "7728016c-e41f-4d3b-a26c-54e9c6d8d561",
+          "parentUuid": "fe3b142d-fd86-4723-9242-2ff3c08af846",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.05573675036430359,
+              0.2934262156486511,
+              0.11288487911224365
+            ],
+            "_rotation": [
+              -0.2538622319698334,
+              -0.028235793113708497,
+              -0.014193646609783173,
+              0.9667240381240845
+            ],
+            "_scale": [
+              1.0,
+              0.9999999403953552,
+              0.9999999403953552
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Anchored to the imported virtual skull.",
+          "m_Content": "You can detach this text panel from the virtual skull by first opening the menu and then pressing the detach button."
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": true
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "299372a2-998a-4a7a-808d-5a39000c04cb",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.27348992228507998,
+              0.0007487332331947982,
+              0.2664637267589569
+            ],
+            "_rotation": [
+              0.0004932461306452751,
+              -0.2999905049800873,
+              0.020768335089087487,
+              0.953715980052948
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Tracking introduction, the last part.",
+          "m_Content": "You have mastered the basics of our tracking functionalities. Press the Track>Skull>Toggle Model Target button to enable tracking and then annote the skull as you like. Play around with it!"
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    },
+    {
+      "threeDObjects": [
+      ],
+      "importedObjects": [
+      ],
+      "textObjects": [
+        {
+          "type": "Text",
+          "uuid": "6dd11c7e-a109-4f36-82c5-b1ddbd3f6740",
+          "parentUuid": "",
+          "serializedTransformPositionRotation": {
+            "_position": [
+              -0.30000001192092898,
+              0.0,
+              0.5
+            ],
+            "_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "_scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "worldSpace": false
+          },
+          "m_Title": "Save And Load",
+          "m_Content": "1. When you are satisfied with what you've built (Congratulations!!)\n2. Click \"Save\" and name your file.\n3. Click \"ToMenu\". Re-enter \"Editor Mode\" or try the \"Trainee Mode\". Click \"Load\" and pick the file you just saved."
+        }
+      ],
+      "twoDObjects": [
+      ],
+      "modelTargetActivated": false
+    }
+  ],
+  "curPhase": 0
+}
