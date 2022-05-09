@@ -92,9 +92,14 @@ public class PhaseSwitchManager : MonoBehaviour
     {
         Debug.Log("NextPhase called");
         if(isEditor)
+        {
             StoreAllObjects();
+        }
         RemoveAllObjects();
-        curPhase += 1;
+        if(isEditor || curPhase < phases.Count - 1)
+        {
+            curPhase += 1;
+        }
         if (phases.Count <= curPhase && isEditor)
         {
             phases.Add(new SerializedHolder());
@@ -431,6 +436,7 @@ class PhaseSwitchManagerSerializable
     public void Deserialize(PhaseSwitchManager manager)
     {
         manager.Phases = this.phases;
-        manager.JumpToPhase(this.curPhase);
+        if(manager.isEditor)
+            manager.JumpToPhase(this.curPhase);
     }
 }

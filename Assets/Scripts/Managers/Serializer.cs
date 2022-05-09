@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -157,9 +158,9 @@ public class Serializer : MonoBehaviour
         this.title = textObject.m_Title;
         this.content = textObject.m_Content;
 
-        VoiceTitleEdit voiceTitleEdit = gameObject.GetComponent<VoiceTitleEdit>();
-        voiceTitleEdit.textTitle.text = title;
-        voiceTitleEdit.textContent.text = content;
+        DialogShell dialogShell = gameObject.GetComponent<DialogShell>();
+        dialogShell.TitleText.text = title;
+        dialogShell.DescriptionText.text = content;
     }
 
     public void DesrializeTwoDObjectStandAlone(TwoDObject twoDObject)
