@@ -1,6 +1,6 @@
 # 3D-Editor
 
-## Project Poster
+
 ![poster](Poster.png)
 
 ## Platforms and third party packages:
