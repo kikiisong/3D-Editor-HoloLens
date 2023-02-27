@@ -9,12 +9,13 @@
 6. [Arrow WayPointer](https://assetstore.unity.com/packages/tools/particles-effects/arrow-waypointer-22642?locale=zh-CN) for the arrow 3D model.
 
 ## How to build:
-1. Install 2020.3.20f1 Unity Editor if not already installed. 
-2. Create a new empty 3D project from Unity Hub.
-3. Unzip our package (3D-Editor.zip) to the empty 3D project. Overwrite anything if prompted.
-4. Switch to the empty 3D project in the Unity Editor, wait for the importing to complete.
-5. Open the Assets/Scenes/MenuScene scene.
-6. Click the play button to run.
+1. Install 2020.3.20f1 Unity Editor if not already installed. Download [Vuforia SDK for Unity] (https://developer.vuforia.com/downloads/sdk). 
+2. Open Packages/manifest.json, delete the line: "com.ptc.vuforia.engine":"file:com.ptc.vuforia.engine-10.[version number].tgz"
+3. Open this project from Unity Hub. If prompted with compilation error warning, select "Ignore".
+4. Once opened, Select Assets > Import Package > Custom, select the Vuforia SDK you downloaded, and select "Import".
+5. Make sure project scripts have been fully recompiled. Go to Window > Package Manager and make sure Vuforia Engine AR is there.
+6. Open the Assets/Scenes/MenuScene scene.
+7. Click the play button to run.
 
 ## Sample trainings:
 There are some sample trainings in the Assets/Resources/Demo/ folder. After you started our system, go to editor mode, click load and select one of the demos to try.
